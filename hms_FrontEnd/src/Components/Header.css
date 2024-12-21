@@ -1,5 +1,11 @@
 
 .custom-navbar {
-    background-color: #4caf50; /* Change to any color you want */
+    background-color: #4caf50; 
+    height: 2cm;
+
+  }
+  Navbar.Brand{
+    color: white;
+    font-style: bold;
   }
   
