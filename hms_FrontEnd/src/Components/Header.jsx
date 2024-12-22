@@ -16,7 +16,7 @@ const Header = () => {
     <Navbar className="custom-navbar">
       <Container>
         <Navbar.Brand href="#home" className="custom-brand">
-          <Image alt="Logo" src={logo} fluid className="brand-logo" />University of Kelaniya</Navbar.Brand>
+        <Image alt="Logo" src={logo} fluid className="brand-logo" />University of Kelaniya</Navbar.Brand>
         <Navbar.Toggle />
         {isHomepage && (
         <div className="button-group">
