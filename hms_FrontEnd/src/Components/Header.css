@@ -1,12 +1,33 @@
+.custom-navbar{
+  background: linear-gradient(to right,rgba(0, 100, 0, 1) 30%, rgba(240, 204, 8, 1) );
+  height: 2.5cm;
+}
 
-.custom-navbar {
-    background-color: #128916; 
-    height: 2cm;
+.custom-brand{
+  color:#fff;
+  font-weight: 500;
+  font-size: 23px;
+}
 
-  }
-  Navbar.Brand{
-    color: white;
-    font-style: bold;
-    font-family: 'Times New Roman', Times, serif;
-  }
+.brand-logo{
+  height: 70px;
+  width: 70px;
+  margin-right: 10px;
+}
+
+.custom-button{
+  border-radius: 1cm;
+  height: 1cm;
+  font-weight: 600;
+}
+
+.custom-button1{
+  font-weight: 600; 
+}
+
+
+.button-group{
+  display:flex;
+  gap: 20px;
   
+}
