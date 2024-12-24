@@ -1,0 +1,46 @@
+.home-container {
+  position: relative;
+  text-align: left;
+}
+
+.background-image img {
+  width: 100%;
+  height: auto;
+  
+}
+
+.content-box {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.875); 
+  max-width: 45%;
+  max-height: 75%;
+  border-radius: 35px !important;
+}
+
+.custom-color {
+  font-size: 90px;
+  font-weight: 700;
+  color:#006400;
+}
+
+.custom-color1{
+  font-size:25px;
+  font-weight: 500;
+  color:#32CD32;
+  margin-top: -3%;
+}
+
+.custom-color2 {
+  font-size: 50px;
+  font-weight: 700;
+  color: #ecc902;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+  font-weight: bolder;
+}

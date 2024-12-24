@@ -1,5 +1,5 @@
 .custom-navbar1{
-    background: linear-gradient(to right,rgba(0, 100, 0, 1) 55%, rgba(240, 204, 8, 1) );
+    background: linear-gradient(to right,#006400 55%, #FFD700 );
     height: 2.5cm;
     padding: 10px 20px;
     color: white;
@@ -46,13 +46,14 @@
     text-align: left;
     max-width: 70%;
     font-weight:bold;
-    margin-right: 300px;
+    margin-right: 250px;
   }
   
   .footer-links,
 .footer-contact {
   margin: 0;
   line-height: 1.5;
+  font-size: 14px;
 }
 
 .footer-links {
