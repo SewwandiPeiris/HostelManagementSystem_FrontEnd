@@ -1,12 +1,12 @@
 .custom-navbar {
-    background-color: #eef1ee; 
+    background-color: white; 
     height: 2cm;
     padding: 5px 20px;
+margin-left: 57px;
+margin-right: 10px;
   }
-  Navbar.Brand{
-    color: rgb(19, 56, 31);
-    font-style: bold;
-    font-size: 10rem; 
-  font-weight: bold;
-  font-family: 'Times New Roman', Times, serif;
-  }
+  .custom-navbar .navbar-brand {
+    color: rgb(35, 136, 67) !important; 
+    font-size: 2rem; 
+    font-weight: bold; 
+    font-family: 'Times New Roman', Times, serif;}
