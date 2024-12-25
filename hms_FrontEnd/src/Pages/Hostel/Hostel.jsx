@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SideBar from '../../Components/SideBar';
 import Tool from '../../Components/Tool';
 import "./Hostel.css";
-const Home = () => {
+const Hostel = () => {
   return (
     <>
       <SideBar />
@@ -40,4 +40,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Hostel;
