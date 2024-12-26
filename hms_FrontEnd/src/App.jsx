@@ -5,6 +5,7 @@ import Home  from './Pages/Home/Home'
 import Hostel from './Pages/Hostel/Hostel'
 import Room from './Pages/Room/Room'
 import Asset from './Pages/Asset/Asset'
+import Admin from './Pages/Admin/Admin'
 const App = () => {
   return (
     <Router>
@@ -20,6 +21,9 @@ const App = () => {
       </Routes>
       <Routes>
         <Route path="/asset" element={<Asset/>}/>
+      </Routes>
+      <Routes>
+        <Route path="/admin" element={<Admin/>}/>
       </Routes>
     </Router>
   );
