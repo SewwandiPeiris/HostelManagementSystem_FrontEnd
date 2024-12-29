@@ -13,7 +13,7 @@ const Damage= () => {
 
       <div className="most-damages-box">
         <h4>Most Damages Reported Hostels</h4>
-        {/* Add dynamic content here if needed */}
+        {}
       </div>
 
       <button className="add-button">Add Damage</button>

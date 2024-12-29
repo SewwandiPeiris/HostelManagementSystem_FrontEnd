@@ -7,7 +7,7 @@ import Room from './Pages/Room/Room'
 import Asset from './Pages/Asset/Asset'
 import Admin from './Pages/Admin/Admin'
 import Damage from './Pages/Damage/Damage'
-
+import Student from './Pages/Student/Student'
 
 const App = () => {
   return (
@@ -30,6 +30,9 @@ const App = () => {
       </Routes>
       <Routes>
         <Route path="/damage" element={<Damage/>}/>
+      </Routes>
+      <Routes>
+        <Route path="/student" element={<Student/>}/>
       </Routes>
     </Router>
   );
