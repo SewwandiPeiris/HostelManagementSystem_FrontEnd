@@ -1,0 +1,56 @@
+.reports-container {
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    
+    padding: 20px;
+    margin-left: 200px;
+    background-color: white;
+    
+  }
+  
+  .reports-title {
+    font-size: 25px;
+    font-weight: bold;
+    
+    margin-bottom: 20px;
+  }
+  
+  .filters-container {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+  }
+  
+  .filter-input {
+    width: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .query-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  .fetch-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #fbc02d;
+    border: none;
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .fetch-button:hover {
+    background-color: #e6a600;
+  }
+  
