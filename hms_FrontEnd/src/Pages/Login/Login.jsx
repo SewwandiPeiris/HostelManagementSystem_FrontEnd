@@ -1,13 +1,71 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../../Components/Header';
+import Footer from '../../Components/Footer';
+import './Login.css';
 
-const Login= () => {
+const Login = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (username === '' || password === '') {
+      setErrorMessage('Both fields are required.');
+    } else {
+      setErrorMessage('');
+      console.log('Username:', username);
+      console.log('Password:', password);
+      // Add your login logic here
+    }
+  };
+
   return (
-    <div>
-      <Header/>
+    <>
+    <Header/>
+    <div className="content">
+    <Container className="custom-container">
+      <Row className="justify-content-center">
+        <Col md={6}>
+          <h2 className="custom-h2">Login</h2>
+          {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+          <Form onSubmit={handleLogin}>
+            <Form.Group className="mb-3" controlId="formUsername">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                className="custom-form-control" 
+                type="text"
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                className="custom-form-control" 
+                type="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Group>
+            <div className="d-grid">
+              <Button className="custom-button" variant="primary" type="submit">Login</Button>
+            </div>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
     </div>
+    
+    <Footer/>
+    </>
   );
+ 
 };
 
 export default Login;
+
