@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Sidebar.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom';
+
 import icon1 from '../assets/icons8-home-50.png'
 import icon2 from '../assets/student-with-graduation-cap.png'
 import icon3 from '../assets/warning.png'
@@ -32,7 +34,7 @@ const Sidebar = () => {
               <a href="#">Home</a>  </li>
               <li>
               <img src={icon2} className="menu-icon" />
-                  <a href="#">Student</a></li>
+  <Link to="/student">Student</Link></li>
               <li>
               <img src={icon3} className="menu-icon" />
                   <a href="#">Damages</a></li>
