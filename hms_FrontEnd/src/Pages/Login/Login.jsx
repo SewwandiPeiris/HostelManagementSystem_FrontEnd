@@ -31,29 +31,29 @@ const Login = () => {
         <Col md={6}>
           <h2 className="custom-h2">Login</h2>
           {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-          <Form onSubmit={handleLogin}>
+          <Form onSubmit={handleLogin} className="form">
             <Form.Group className="mb-3" controlId="formUsername">
-              <Form.Label>Username</Form.Label>
+              <Form.Label>Username : </Form.Label>
               <Form.Control
-                className="custom-form-control" 
+                className="custom-formcontrol" 
                 type="text"
-                placeholder="Enter your username"
+                placeholder="Enter your kelani mail"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formPassword">
-              <Form.Label>Password</Form.Label>
+              <Form.Label>Password : </Form.Label>
               <Form.Control
-                className="custom-form-control" 
+                className="custom-formcontrol" 
                 type="password"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </Form.Group>
-            <div className="d-grid">
-              <Button className="custom-button" variant="primary" type="submit">Login</Button>
+            <div>
+              <Button className="custom-button" variant="warning" type="submit">Login</Button>
             </div>
           </Form>
         </Col>

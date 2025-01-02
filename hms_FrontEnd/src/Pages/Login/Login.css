@@ -1,16 +1,16 @@
 .content{
-    background: linear-gradient(to bottom, #ffffff, #6bd36b);
+    background: white;
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
+    min-height:70vh ;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .custom-container{
-    background: #ffffff;
+    background: rgb(226, 226, 226);
     padding: 2rem;
     border-radius: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -20,14 +20,69 @@
 
 .custom-h2{
     text-align: center;
-    color: #006400;
+    color: #014701;
     font-weight: 700;
     margin-bottom: 1.5rem;
 }
 
-.custom-form-control{
+.custom-formcontrol{
     border: 1px solid #cccccc;
-  border-radius: 8px;
-  padding: 0.8rem;
-  font-size: 1rem;
+    border-radius: 8px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    width:auto;
 }
+
+.custom-formcontrol:focus{
+    border-color: #006400;
+    box-shadow: 0 0 5px rgba(0, 100, 0, 0.5);
+}
+
+
+.custom-button{
+  background: #006400;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background 0.3s ease;
+  width: 100%;
+}
+
+.custom-button:hover{
+  background: #004c00;
+  cursor: pointer;
+}
+
+/* Error message styling */
+.alert {
+    border-radius: 8px;
+    padding: 0.8rem;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  
+  @media (max-width: 576px) {
+    .custom-container {
+      padding: 1.5rem;
+      max-width: 90%;
+    }
+  
+    .custom-h2 {
+      font-size: 1.5rem;
+    }
+  
+    .custom-button {
+      font-size: 1rem;
+    }
+  }
+
+.col-md-6 {
+    flex: 0 0 auto;
+    width: auto;
+    padding: 0;
+}
+
+  
