@@ -1,22 +1,23 @@
 .home-container {
   position: relative;
   text-align: left;
+  height: 100vh;
 }
 
-.background-image img {
-  width: 100%;
-  height: auto;
-  
+.background-image {
+  height: 100vh; 
+  width: 100%; 
+  overflow: hidden; 
 }
 
 .content-box {
   position: absolute;
   top: 50%;
-  left: 5%;
+  left: 10%;
   transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.875); 
+  background-color: rgba(255, 255, 255, 0.827); 
   max-width: 45%;
-  max-height: 75%;
+  max-height: auto;
   border-radius: 35px !important;
 }
 
@@ -43,4 +44,73 @@ p {
   font-size: 16px;
   line-height: 1.6;
   font-weight: bolder;
+}
+
+.custom-navbar2{
+  background: linear-gradient(to right,rgba(25, 149, 25, 1) 20%,rgba(57, 86, 13, 1) );
+  height: 2cm;
+  justify-content: center;
+  margin-top: 1.5cm;
+  margin-bottom:1.5cm ;
+}
+
+.custom-color3{
+  color:white;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.row{
+  margin-left: 1.5cm;
+  margin-right: 1.5cm;
+  margin-bottom: 1cm;
+  gap: 50px;
+  justify-content: center;
+}
+
+.custom-card{
+  background-color: rgb(239, 239, 239);
+  border-radius: 0.5cm;
+  height: auto;
+  margin-bottom: 0.5cm;
+}
+
+.custom-card1{
+  font-weight: 700;
+  color: #32CD32;
+  text-align: center;
+  font-size: 25px;
+}
+
+.custom-modal1{
+  color: #006400;
+}
+
+.custom-modal2{
+  background-color: #d0e7d0;
+}
+
+.custom-modal.modal-dialog {
+  min-width: 80%; 
+}
+
+.card-img-top {
+  height: 200px; /* Adjust height */
+  object-fit: cover; /* Ensure the image is cropped properly */
+}
+
+@media (max-width: 768px) {
+  .content-box {
+    max-width: 90%;
+    left: 5%;
+    transform: translateY(-50%);
+  }
+
+  .custom-color {
+    font-size: 40px;
+  }
+
+  .custom-card {
+    flex: 1 1 100%; /* Full width on small screens */
+  }
 }

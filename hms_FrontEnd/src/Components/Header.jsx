@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.png';
 import './Header.css';
 
 const Header = () => {
