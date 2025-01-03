@@ -8,15 +8,9 @@ const AdminDashBoard= () => {
     <>
       <SideBar />
           <Tool />
-          {/* Add a link to the Student page */}
+          
       
-        <Link to="/student"> </Link>
-          <Link to="/report"></Link>
-          <Link to="/damage"></Link>
-          <Link to="/admin"></Link>
-          <Link to="/asset"></Link>
-          <Link to="/room"></Link>
-          <Link to="/hostel"></Link>
+        
           </>
   );
 };

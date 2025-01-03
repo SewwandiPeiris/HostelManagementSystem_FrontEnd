@@ -18,7 +18,7 @@ const Admin = () => {
 
       {}
       <div className="admins-container">
-        <h2>Admins</h2>
+        <h2>Admin Details</h2>
         <table className="admins-table">
           <thead>
             <tr>

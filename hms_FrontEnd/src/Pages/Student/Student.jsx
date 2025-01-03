@@ -2,14 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SideBar from '../../Components/SideBar';
 import Tool from '../../Components/Tool';
+import Bar from '../../Components/Bar';
 import "./Student.css";
 const Student= () => {
   return (
     <>
       <SideBar />
-          <Tool />
+      <Tool />
+      <Bar/>
           <div className="student-container">
-      <h1 className="student-title">Students</h1>
+      <h1 className="student-title">Students Details</h1>
       <div className="student-header">
         <input
           type="text"

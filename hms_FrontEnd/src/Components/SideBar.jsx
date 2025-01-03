@@ -31,29 +31,28 @@ const Sidebar = () => {
                  
               <li>
                   <img src={icon1} className="menu-icon" />
-              <a href="#">Home</a>  </li>
+                  <Link to="/admindashboard"> DashBorad</Link></li>
               <li>
               <img src={icon2} className="menu-icon" />
-  <Link to="/student">Student</Link></li>
+              <Link to="/student">Student</Link></li>
               <li>
               <img src={icon3} className="menu-icon" />
-                  <a href="#">Damages</a></li>
+              <Link to="/damage">Damage</Link></li>
               <li>
               <img src={icon4} className="menu-icon" />
-                  <a href="#">Assets</a></li>
+              <Link to="/asset">Asset</Link></li>
               <li>
               <img src={icon5} className="menu-icon" />
-                  <a href="#">Room</a></li>     
+              <Link to="/room">Room</Link></li>    
               <li>
               <img src={icon6} className="menu-icon" />
-                  <a href="#">Hostels</a></li>
+              <Link to="/hostel">Hostel</Link></li>
               <li>
               <img src={icon7} className="menu-icon" /> 
-                  <a href="#">Admin</a></li>
+              <Link to="/admin">Admin</Link></li>
               <li>
               <img src={icon8} className="menu-icon" /> 
-                  <a href="#">Reports</a></li>
-
+              <Link to="/report">Report</Link></li>
       </ul>
     </div>
   );

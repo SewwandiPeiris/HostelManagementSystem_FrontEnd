@@ -9,7 +9,7 @@ const Damage= () => {
       <SideBar />
           <Tool />
           <div className="hostel-damages-container">
-      <h2>Hostel Damages</h2>
+      <h2>Damage Details</h2>
 
       <div className="most-damages-box">
         <h4>Most Damages Reported Hostels</h4>

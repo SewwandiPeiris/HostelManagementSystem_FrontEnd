@@ -9,7 +9,7 @@ const Asset = () => {
         <SideBar />
             <Tool />
             <div className="asset-container">
-      <h2 className="title">Hostel Assets</h2>
+      <h2 className="title">Assets Details</h2>
       <button className="add-room-button">Add Assets</button>
       <table className="asset-table">
         <thead>

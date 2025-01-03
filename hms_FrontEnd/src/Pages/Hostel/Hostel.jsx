@@ -9,7 +9,7 @@ const Hostel = () => {
       <SideBar />
       <Tool />
       <div className="hostels-container">
-        <h1 className="hostels-title">Hostels</h1>
+        <h1 className="hostels-title">Hostel Details</h1>
         <button className="add-hostel-button">Add Hostel</button>
         <table className="hostels-table">
           <thead>

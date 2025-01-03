@@ -1,0 +1,49 @@
+/* General Navbar Styles */
+.navbar_s {
+ margin-left: 200px; 
+ background-color: white;
+}
+
+.navbar .navbar-toggler {
+  border-color: transparent;
+  background-color: white;
+}
+
+
+
+.navbar .nav-link {
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-right: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #ffcc00; /* Yellow */
+  text-decoration: underline;
+}
+
+.navbar .nav-link.active {
+  color: #ffcc00; /* Yellow */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .navbar .nav-link {
+    font-size: 0.9rem;
+  }
+}
+
+/* Button (Optional) */
+.navbar .btn {
+  
+  background-color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+
