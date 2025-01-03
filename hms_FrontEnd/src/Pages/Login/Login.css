@@ -39,7 +39,7 @@
 }
 
 
-.custom-button{
+.custom-button2{
   background: #006400;
   border: none;
   border-radius: 8px;
@@ -51,7 +51,7 @@
   width: 100%;
 }
 
-.custom-button:hover{
+.custom-button2:hover{
   background: #004c00;
   cursor: pointer;
 }
@@ -74,7 +74,7 @@
       font-size: 1.5rem;
     }
   
-    .custom-button {
+    .custom-button2 {
       font-size: 1rem;
     }
   }

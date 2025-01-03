@@ -5,7 +5,7 @@ import Home  from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import UserAccount from './Pages/UserAccount/UserAccount';
 import RouteTitle from './Components/RouteTitle';
-
+import ApplyForm  from './Pages/ApplyForm/ApplyForm';
 
 const App = () => {
   return (
@@ -19,6 +19,9 @@ const App = () => {
       </Routes>
       <Routes>
         <Route path="/useraccount" element={<UserAccount/>} />
+      </Routes>
+      <Routes>
+        <Route path="/applyform" element={<ApplyForm/>} />
       </Routes>
     </Router>
   );

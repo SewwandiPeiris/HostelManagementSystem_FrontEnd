@@ -1,0 +1,36 @@
+.form-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f7f7f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .custom-h21 {
+    color: #225906;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  
+  label {
+    font-weight: 600;
+  }
+  
+  button {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
+  .alert {
+    font-size: 0.85rem;
+    margin-top: 5px;
+    padding: 5px 10px;
+    text-align: left;
+  }
+  
+  .custom-formcontrol1:focus{
+    border-color: #006400;
+    box-shadow: 0 0 5px rgba(0, 100, 0, 0.5);
+}
