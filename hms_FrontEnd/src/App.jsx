@@ -1,11 +1,11 @@
-import react from 'react'
-import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home  from './Pages/Home/Home';
+import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import UserAccount from './Pages/UserAccount/UserAccount';
 import RouteTitle from './Components/RouteTitle';
-import ApplyForm  from './Pages/ApplyForm/ApplyForm';
+import ApplyForm from './Pages/ApplyForm/ApplyForm';
+import './App.css';
+
 
 const App = () => {
   return (
@@ -24,6 +24,7 @@ const App = () => {
         <Route path="/applyform" element={<ApplyForm/>} />
       </Routes>
     </Router>
+
   );
 }
 

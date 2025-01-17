@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Card, Button, Modal, Navbar, Carousel } from "react-bootstrap";
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import buildingImage from '../../assets/image3.jpg';
@@ -8,10 +9,9 @@ import buildingImage2 from '../../assets/image2.jpg';
 import facilityImage from '../../assets/Facility.jpg';
 import hostelImage from '../../assets/Hostel.jpg';
 import selectionImage from '../../assets/Selection.jpg';
-import Navbar from 'react-bootstrap/Navbar';
-import { Card, Button, Modal } from "react-bootstrap";
-import Carousel from 'react-bootstrap/Carousel';
 import './Home.css';
+
+
 
 const Home= () => {
     // State for controlling the modal
@@ -206,11 +206,6 @@ const Home= () => {
           <Button variant="danger" onClick={handleClose}> Close </Button>
         </Modal.Footer>
       </Modal>
-    
-
-    {/* <Navbar className="custom-navbar2" expand="lg">
-        <Navbar.Brand className="custom-color3" href="/">Our Facilities</Navbar.Brand>
-     </Navbar>*/}
 
      <Footer/>
     </>

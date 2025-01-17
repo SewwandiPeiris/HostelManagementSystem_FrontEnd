@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import './Login.css';
@@ -37,7 +37,7 @@ const Login = () => {
               <Form.Control
                 className="custom-formcontrol" 
                 type="text"
-                placeholder="Enter your kelani mail"
+                placeholder="Enter the Kelani mail"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -47,7 +47,7 @@ const Login = () => {
               <Form.Control
                 className="custom-formcontrol" 
                 type="password"
-                placeholder="Enter your password"
+                placeholder="Enter the password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
