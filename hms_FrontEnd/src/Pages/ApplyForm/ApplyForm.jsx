@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Alert} from "react-bootstrap";
+import Image from 'react-bootstrap/Image';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ApplyForm.css";
+import logo from 'C:/Users/Sewwandi/Desktop/Front_End/HSM_Frontend/hms_FrontEnd/src/assets/logo.png';
+
 
 const ApplyForm = () => {
   const [formData, setFormData] = useState({
@@ -11,7 +14,7 @@ const ApplyForm = () => {
     gender: "",
     email: "",
     password: "",
-    studentId: "",
+    student_Id: "",
     contact_number: "",
     address: "",
     distance: "",
@@ -68,6 +71,14 @@ const ApplyForm = () => {
 
   return (
     <Container className="form-container mt-4">
+      <div className="footer-left">
+      <Image alt="Logo" src={logo} fluid className="brand-logo1" />
+        <div className="footer-title">
+            <span className="university-of">University of</span>
+            <br />
+            <span className="kelaniya">Kelaniya</span>
+          </div>
+      </div>
       <h2 className="custom-h21">Hostel Apply Form</h2>
       {formSubmitted && <Alert variant="success">Form submitted successfully!</Alert>}
       <Form onSubmit={handleSubmit}>
