@@ -40,7 +40,9 @@ const ApplyForm = () => {
     name_of_guardian: "",
     guardian_contact_number: "",
     annual_salary: "",
-    confirmInformation: false, 
+    password: "",
+    status: "",
+    confirmInformation: false,
   });
 
   const [formErrors, setFormErrors] = useState({});
@@ -48,13 +50,13 @@ const ApplyForm = () => {
 
   const handleChange = (e) => {
     const { name, type, value, checked } = e.target;
-    setFormData({ ...formData, [name]:type === "checkbox" ? checked : value });
+    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
     setFormErrors({ ...formErrors, [name]: "" });
   };
 
   const validateForm = () => {
     const errors = {};
-  
+
     for (const [key, value] of Object.entries(formData)) {
       // Required field check
       if (typeof value === "string" && !value.trim()) {
@@ -63,36 +65,47 @@ const ApplyForm = () => {
         errors[key] = `${key.replace(/_/g, " ")} is required`;
       }
     }
-  
+    // Password Validation
+    if (formData.password !== formData.rePassword) {
+      errors.password = "Passwords do not match!";
+      errors.rePassword = "Passwords do not match!";
+    }
+
+    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/; // At least 1 capital letter, 1 number, and 8 characters
+    if (formData.password && !passwordRegex.test(formData.password)) {
+      errors.password =
+        "Password must contain at least one capital letter, one number, and be at least 8 characters long.";
+    }
+
     // Email validation
     if (formData.email && !/^\S+@\S+\.\S+$/.test(formData.email.trim())) {
       errors.email = "Please enter a valid email address";
     }
-  
+
     // Contact number validation
     if (formData.contact_number && !/^\d{10}$/.test(formData.contact_number.trim())) {
       errors.contact_number = "Contact number must be 10 digits";
     }
-  
+
     // Postal code validation
     if (formData.postal_code && !/^\d{5}$/.test(formData.postal_code.trim())) {
       errors.postal_code = "Postal code must be 5 digits";
     }
-  
+
     // Annual salary validation
     if (formData.annual_salary && isNaN(formData.annual_salary.trim())) {
       errors.annual_salary = "Annual salary must be a number";
     }
-  
+
     // Checkbox validation
     if (!formData.confirmInformation) {
       errors.confirmInformation = "You must confirm that the information is true and correct.";
     }
-  
+
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
-  
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -121,7 +134,7 @@ const ApplyForm = () => {
       <h2 className="custom-h21">Hostel Apply Form</h2>
       {formSubmitted && <Alert variant="success">Form submitted successfully!</Alert>}
       <Form onSubmit={handleSubmit}>
-      <Row><Form.Label><b>Personal Details</b></Form.Label></Row>
+        <Row><Form.Label><b>Personal Details</b></Form.Label></Row>
         <Row>
           <Col md={4}>
             <Form.Group controlId="first_Name" className="mb-3">
@@ -319,7 +332,7 @@ const ApplyForm = () => {
         </Row>
         <Row><Form.Label><b>Additional Details</b></Form.Label></Row>
         <Row>
-        <Col md={4}>
+          <Col md={4}>
             <Form.Group controlId="distance_to_home" className="mb-3">
               <Form.Label>Distance to Home</Form.Label>
               <Form.Control
@@ -445,6 +458,8 @@ const ApplyForm = () => {
                 name="guardian_contact_number"
                 value={formData.guardian_contact_number}
                 onChange={handleChange}
+                isInvalid={!!formErrors.guardian_contact_number}
+                placeholder="Mobile Number"
               />
               {formErrors.guardian_contact_number && (
                 <Alert variant="danger">{formErrors.guardian_contact_number}</Alert>
@@ -452,19 +467,59 @@ const ApplyForm = () => {
             </Form.Group>
           </Col>
         </Row>
+        <Row><Form.Label><b>Create Your Login Password </b><p className="p1" > *Remember Your Password </p></Form.Label></Row>
         <Row>
-        <Form.Group controlId="confirmInformation" className="mb-3">
-        <Form.Check
-          type="checkbox"
-          label="I confirm that the information provided is true and correct."
-          name="confirmInformation"
-          checked={formData.confirmInformation}
-          onChange={handleChange}
-        />
-        {formErrors.confirmInformation && (
-          <Alert variant="danger">{formErrors.confirmInformation}</Alert>
-        )}
-      </Form.Group>
+          <Col md={4}>
+            <Form.Group controlId="password" className="mb-3">
+              <Form.Label>Password<p className="p2">At least 8 characters, 1 upper case letter and 1 number.</p></Form.Label>
+              <Form.Control
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                isInvalid={!!formErrors.password}
+                placeholder="Enter your password"
+              />
+              <Form.Control.Feedback type="invalid">
+                {formErrors.password}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+          <Col md={3}>
+          <Form.Label></Form.Label>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={4}>
+            <Form.Group controlId="rePassword" className="mb-3">
+              <Form.Label>Re-enter Password</Form.Label>
+              <Form.Control
+                type="password"
+                name="rePassword"
+                value={formData.rePassword}
+                onChange={handleChange}
+                isInvalid={!!formErrors.rePassword}
+                placeholder="Re-enter your password"
+              />
+              <Form.Control.Feedback type="invalid">
+                {formErrors.rePassword}
+              </Form.Control.Feedback>
+            </Form.Group>
+          </Col>
+        </Row>
+        <Row>
+          <Form.Group controlId="confirmInformation" className="mb-3">
+            <Form.Check
+              type="checkbox"
+              label="I confirm that the information provided is true and correct."
+              name="confirmInformation"
+              checked={formData.confirmInformation}
+              onChange={handleChange}
+            />
+            {formErrors.confirmInformation && (
+              <Alert variant="danger">{formErrors.confirmInformation}</Alert>
+            )}
+          </Form.Group>
         </Row>
         <Row>
           <Col md={4} className="col1"><Button variant="primary" type="submit" className="custom-button2">Submit</Button></Col>
