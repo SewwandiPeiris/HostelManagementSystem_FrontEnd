@@ -35,10 +35,10 @@ const ApplyForm = () => {
     main_source_of_income: "",
     additional_source_of_income: "",
     number_of_family_members: "",
-    number_of_cousins: "",
-    number_of_cousins_edu: "",
-    name_of_gardian: "",
-    gardian_contact_number: "",
+    number_of_siblings: "",
+    number_of_siblings_edu: "",
+    name_of_guardian: "",
+    guardian_contact_number: "",
     annual_salary: "",
     confirmInformation: false, 
   });
@@ -54,35 +54,45 @@ const ApplyForm = () => {
 
   const validateForm = () => {
     const errors = {};
+  
     for (const [key, value] of Object.entries(formData)) {
-      if (!value.trim()) {
+      // Required field check
+      if (typeof value === "string" && !value.trim()) {
+        errors[key] = `${key.replace(/_/g, " ")} is required`;
+      } else if (typeof value === "boolean" && !value) {
         errors[key] = `${key.replace(/_/g, " ")} is required`;
       }
     }
-
-    if (formData.email && !/^\S+@\S+\.\S+$/.test(formData.email)) {
+  
+    // Email validation
+    if (formData.email && !/^\S+@\S+\.\S+$/.test(formData.email.trim())) {
       errors.email = "Please enter a valid email address";
     }
-
-    if (formData.contact_number && !/^\d{10}$/.test(formData.contact_number)) {
+  
+    // Contact number validation
+    if (formData.contact_number && !/^\d{10}$/.test(formData.contact_number.trim())) {
       errors.contact_number = "Contact number must be 10 digits";
     }
-
-    if (formData.postal_code && !/^\d{5}$/.test(formData.postal_code)) {
+  
+    // Postal code validation
+    if (formData.postal_code && !/^\d{5}$/.test(formData.postal_code.trim())) {
       errors.postal_code = "Postal code must be 5 digits";
     }
-
-    if (formData.annual_salary && isNaN(formData.annual_salary)) {
+  
+    // Annual salary validation
+    if (formData.annual_salary && isNaN(formData.annual_salary.trim())) {
       errors.annual_salary = "Annual salary must be a number";
     }
-
+  
+    // Checkbox validation
     if (!formData.confirmInformation) {
       errors.confirmInformation = "You must confirm that the information is true and correct.";
     }
-
+  
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -384,60 +394,60 @@ const ApplyForm = () => {
             </Form.Group>
           </Col>
           <Col md={3}>
-            <Form.Group controlId="number_of_cousins" className="mb-3">
-              <Form.Label>Number of cousins</Form.Label>
+            <Form.Group controlId="number_of_siblings" className="mb-3">
+              <Form.Label>Number of siblings</Form.Label>
               <Form.Control
                 type="text"
-                name="number_of_cousins"
-                value={formData.number_of_cousins}
+                name="number_of_siblings"
+                value={formData.number_of_siblings}
                 onChange={handleChange}
               />
-              {formErrors.number_of_cousins && (
-                <Alert variant="danger">{formErrors.number_of_cousins}</Alert>
+              {formErrors.number_of_siblings && (
+                <Alert variant="danger">{formErrors.number_of_siblings}</Alert>
               )}
             </Form.Group>
           </Col>
           <Col md={4}>
-            <Form.Group controlId="number_of_cousins_edu" className="mb-3">
-              <Form.Label>Number of cousins who study at School or University</Form.Label>
+            <Form.Group controlId="number_of_siblings_edu" className="mb-3">
+              <Form.Label>Number of siblings who study at School or University</Form.Label>
               <Form.Control
                 type="text"
-                name="number_of_cousins_edu"
-                value={formData.number_of_cousins_edu}
+                name="number_of_siblings_edu"
+                value={formData.number_of_siblings_edu}
                 onChange={handleChange}
               />
-              {formErrors.number_of_cousins_edu && (
-                <Alert variant="danger">{formErrors.number_of_cousins_edu}</Alert>
+              {formErrors.number_of_siblings_edu && (
+                <Alert variant="danger">{formErrors.number_of_siblings_edu}</Alert>
               )}
             </Form.Group>
           </Col>
         </Row>
         <Row>
           <Col md={4}>
-            <Form.Group controlId="name_of_gardian" className="mb-3">
-              <Form.Label>Name of the gardian</Form.Label>
+            <Form.Group controlId="name_of_guardian" className="mb-3">
+              <Form.Label>Name of the guardian</Form.Label>
               <Form.Control
                 type="text"
-                name="name_of_gardian"
-                value={formData.name_of_gardian}
+                name="name_of_guardian"
+                value={formData.name_of_guardian}
                 onChange={handleChange}
               />
-              {formErrors.name_of_gardian && (
-                <Alert variant="danger">{formErrors.name_of_gardian}</Alert>
+              {formErrors.name_of_guardian && (
+                <Alert variant="danger">{formErrors.name_of_guardian}</Alert>
               )}
             </Form.Group>
           </Col>
           <Col md={3}>
-            <Form.Group controlId="gardian_contact_number" className="mb-3">
-              <Form.Label>Contact of the gardian</Form.Label>
+            <Form.Group controlId="guardian_contact_number" className="mb-3">
+              <Form.Label>Contact of the guardian</Form.Label>
               <Form.Control
                 type="text"
-                name="gardian_contact_number"
-                value={formData.gardian_contact_number}
+                name="guardian_contact_number"
+                value={formData.guardian_contact_number}
                 onChange={handleChange}
               />
-              {formErrors.gardian_contact_number && (
-                <Alert variant="danger">{formErrors.gardian_contact_number}</Alert>
+              {formErrors.guardian_contact_number && (
+                <Alert variant="danger">{formErrors.guardian_contact_number}</Alert>
               )}
             </Form.Group>
           </Col>
@@ -457,7 +467,6 @@ const ApplyForm = () => {
       </Form.Group>
         </Row>
         <Row>
-          <Col md={8}></Col>
           <Col md={4} className="col1"><Button variant="primary" type="submit" className="custom-button2">Submit</Button></Col>
         </Row>
       </Form>
