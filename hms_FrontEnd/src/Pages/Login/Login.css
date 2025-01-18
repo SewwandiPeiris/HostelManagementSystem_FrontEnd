@@ -25,15 +25,15 @@
     margin-bottom: 1.5rem;
 }
 
-.custom-formcontrol{
+.custom-formcontrol1{
     border: 1px solid #cccccc;
     border-radius: 8px;
     padding: 0.8rem;
     font-size: 1rem;
-    width:auto;
+    width:100%;
 }
 
-.custom-formcontrol:focus{
+.custom-formcontrol1:focus{
     border-color: #006400;
     box-shadow: 0 0 5px rgba(0, 100, 0, 0.5);
 }

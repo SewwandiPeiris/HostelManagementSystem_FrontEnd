@@ -35,7 +35,7 @@ const Login = () => {
             <Form.Group className="mb-3" controlId="formUsername">
               <Form.Label>Username : </Form.Label>
               <Form.Control
-                className="custom-formcontrol" 
+                className="custom-formcontrol1" 
                 type="text"
                 placeholder="Enter the Kelani mail"
                 value={username}
@@ -45,7 +45,7 @@ const Login = () => {
             <Form.Group className="mb-3" controlId="formPassword">
               <Form.Label>Password : </Form.Label>
               <Form.Control
-                className="custom-formcontrol" 
+                className="custom-formcontrol1" 
                 type="password"
                 placeholder="Enter the password"
                 value={password}

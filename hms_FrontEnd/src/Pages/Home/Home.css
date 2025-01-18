@@ -60,13 +60,13 @@ p {
   font-weight: 700;
 }
 
-/* .row{
+.row{
   margin-left: 1.5cm;
   margin-right: 1.5cm;
   margin-bottom: 1cm;
   gap: 50px;
   justify-content: center;
-}  */
+}  
 
 .custom-card{
   background-color: rgb(239, 239, 239);

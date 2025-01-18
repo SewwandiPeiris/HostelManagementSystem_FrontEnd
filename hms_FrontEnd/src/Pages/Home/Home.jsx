@@ -179,7 +179,7 @@ const Home= () => {
 
       <div className="row">
         {cardData.map((card, index) => (
-          <div className="col-md-4" key={index}>
+          <div className="col-md-5" key={index}>
             <Card className="custom-card">
               <Card.Body>
                 <Card.Title className="custom-card1">{card.title}</Card.Title>

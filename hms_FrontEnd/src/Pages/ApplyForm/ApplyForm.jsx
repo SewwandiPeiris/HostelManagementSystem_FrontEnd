@@ -558,7 +558,7 @@ const ApplyForm = () => {
           </Form.Group>
         </Row>
         <Row>
-          <Col md={4} className="col1"><Button variant="primary" type="submit" className="custom-button2">Submit</Button></Col>
+          <Col md={4} className="col1"><Button variant="primary" type="submit" className="custom-button4">Submit</Button></Col>
         </Row>
       </Form>
     </Container>
