@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SideBar from '../../Components/SideBar';
 import Tool from '../../Components/Tool';
+import Bar from '../../Components/Bar';
 import './Room.css'
 const Room = () => {
     return (
       <>
         <SideBar />
-            <Tool />
+        <Tool />
+        <Bar/>
             <div className="hostel-rooms-container">
       <h2 className="title">Room Details</h2>
       <button className="add-room-button">Add Room</button>

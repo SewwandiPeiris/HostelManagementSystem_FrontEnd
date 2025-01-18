@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SideBar from '../../Components/SideBar';
 import Tool from '../../Components/Tool';
+import Bar from '../../Components/Bar';
 import "./Damage.css";
 const Damage= () => {
   return (
     <>
       <SideBar />
-          <Tool />
+      <Tool />
+      <Bar/>
           <div className="hostel-damages-container">
       <h2>Damage Details</h2>
 

@@ -2,12 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SideBar from '../../Components/SideBar';
 import Tool from '../../Components/Tool';
+import Bar from '../../Components/Bar';
 import "./Report.css";
 const Report= () => {
   return (
     <>
       <SideBar />
-          <Tool />
+      <Tool />
+      <Bar/>
           <div className="reports-container">
       <h1 className="reports-title">Create Reports</h1>
       <div className="filters-container">
