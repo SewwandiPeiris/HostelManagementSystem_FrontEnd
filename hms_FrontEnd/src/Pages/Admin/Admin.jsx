@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SideBar from '../../Components/SideBar';
 import Tool from '../../Components/Tool';
 import './Admin.css';
-import Bar from '../../Components/Bar';
+
 const Admin = () => {
   
   const admins = [
@@ -15,7 +15,7 @@ const Admin = () => {
       {}
       <SideBar />
       <Tool />
-<Bar/>
+
       {}
       <div className="admins-container">
         <h2>Admin Details</h2>

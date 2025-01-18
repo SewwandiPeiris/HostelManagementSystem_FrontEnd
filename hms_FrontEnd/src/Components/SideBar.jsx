@@ -12,7 +12,7 @@ import icon6 from '../assets/building.png'
 import icon7 from '../assets/key.png'
 import icon8 from '../assets/report.png'
 import logo from '../assets/university-of-kelaniya-logo.png'
-
+import icon9 from '../assets/log-out.png'
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -52,7 +52,10 @@ const Sidebar = () => {
               <Link to="/admin">Admin</Link></li>
               <li>
               <img src={icon8} className="menu-icon" /> 
-              <Link to="/report">Report</Link></li>
+          <Link to="/report">Report</Link></li>
+          <li>
+              <img src={icon9} className="menu-icon" /> 
+              <Link to="/logout">Logout</Link></li>
       </ul>
     </div>
   );

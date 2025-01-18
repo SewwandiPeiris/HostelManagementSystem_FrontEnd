@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import SideBar from '../../Components/SideBar';
 import Tool from '../../Components/Tool';
 import Dashboard from "../../Components/Dashboard";
-import Bar from '../../Components/Bar';
+
 import "./AdminDashBoard.css";
 const AdminDashBoard= () => {
   return (

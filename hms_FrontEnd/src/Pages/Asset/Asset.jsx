@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import SideBar from '../../Components/SideBar';
 import Tool from '../../Components/Tool';
 import './Asset.css'
-import Bar from '../../Components/Bar';
+
 const Asset = () => {
     return (
       <>
         <SideBar />
         <Tool />
-        <Bar/>
+        
             <div className="asset-container">
       <h2 className="title">Assets Details</h2>
       <button className="add-room-button">Add Assets</button>
