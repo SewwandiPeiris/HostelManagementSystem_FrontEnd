@@ -177,24 +177,49 @@ const Home= () => {
         <Navbar.Brand className="custom-color3" href="/">About Hostels</Navbar.Brand>
      </Navbar>
 
-      <div className="row">
-        {cardData.map((card, index) => (
-          <div className="col-md-5" key={index}>
-            <Card className="custom-card">
-              <Card.Body>
-                <Card.Title className="custom-card1">{card.title}</Card.Title>
-                <Card.Img variant="top" src={card.image} alt={card.title} />
-                <Card.Text>
-                  {card.description.props.children[0].props.children}
-                </Card.Text>
-                <Button variant="warning" onClick={() => handleShow(card.title, card.description)}>
-                 <strong>View More</strong>
-                </Button>
-              </Card.Body>
-            </Card>
-          </div>
-        ))}
+     <div className="custom-row row justify-content-center">
+    {cardData.slice(0, 2).map((card, index) => (
+      <div className="col-md-5" key={index}>
+        <Card className="custom-card mb-4">
+          <Card.Body>
+            <Card.Title className="custom-card1">{card.title}</Card.Title>
+            <Card.Img variant="top" src={card.image} alt={card.title} />
+            <Card.Text>
+              {card.description.props.children[0].props.children}
+            </Card.Text>
+            <Button
+              variant="warning"
+              onClick={() => handleShow(card.title, card.description)}
+            >
+              <strong>View More</strong>
+            </Button>
+          </Card.Body>
+        </Card>
       </div>
+    ))}
+  </div>
+
+  <div className="custom-row row justify-content-center">
+    {cardData.slice(2, 3).map((card, index) => (
+      <div className="col-md-5" key={index}>
+        <Card className="custom-card mb-4">
+          <Card.Body>
+            <Card.Title className="custom-card1">{card.title}</Card.Title>
+            <Card.Img variant="top" src={card.image} alt={card.title} />
+            <Card.Text>
+              {card.description.props.children[0].props.children}
+            </Card.Text>
+            <Button
+              variant="warning"
+              onClick={() => handleShow(card.title, card.description)}
+            >
+              <strong>View More</strong>
+            </Button>
+          </Card.Body>
+        </Card>
+      </div>
+    ))}
+  </div>
 
       
       <Modal show={show} onHide={handleClose} centered dialogClassName="custom-modal">
