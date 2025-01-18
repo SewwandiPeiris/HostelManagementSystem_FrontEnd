@@ -59,10 +59,12 @@ const ApplyForm = () => {
 
     for (const [key, value] of Object.entries(formData)) {
       // Required field check
-      if (typeof value === "string" && !value.trim()) {
-        errors[key] = `${key.replace(/_/g, " ")} is required`;
+      if (typeof value === "string" && !value.trim()) { 
+        const formattedKey = key.replace(/_/g, " ");
+        errors[key] = `${formattedKey.charAt(0).toUpperCase() + formattedKey.slice(1)} is required`;
       } else if (typeof value === "boolean" && !value) {
-        errors[key] = `${key.replace(/_/g, " ")} is required`;
+        const formattedKey = key.replace(/_/g, " ");
+        errors[key] = `${formattedKey.charAt(0).toUpperCase() + formattedKey.slice(1)} is required`;
       }
     }
     // Password Validation
@@ -144,6 +146,8 @@ const ApplyForm = () => {
                 name="first_Name"
                 value={formData.first_Name}
                 onChange={handleChange}
+                isInvalid={!!formErrors.first_Name}
+                placeholder="Ex: Sewwandi"
               />
               {formErrors.first_Name && <Alert variant="danger">{formErrors.first_Name}</Alert>}
             </Form.Group>
@@ -156,6 +160,8 @@ const ApplyForm = () => {
                 name="last_Name"
                 value={formData.last_Name}
                 onChange={handleChange}
+                isInvalid={!!formErrors.last_Name}
+                placeholder="Ex: Peiris"
               />
               {formErrors.last_Name && <Alert variant="danger">{formErrors.last_Name}</Alert>}
             </Form.Group>
@@ -168,6 +174,8 @@ const ApplyForm = () => {
                 name="name_with_initials"
                 value={formData.name_with_initials}
                 onChange={handleChange}
+                isInvalid={!!formErrors.name_with_initials}
+                placeholder="Ex: H. S. K. Peiris"
               />
               {formErrors.name_with_initials && <Alert variant="danger">{formErrors.name_with_initials}</Alert>}
             </Form.Group>
@@ -182,6 +190,8 @@ const ApplyForm = () => {
                 name="national_id"
                 value={formData.national_id}
                 onChange={handleChange}
+                isInvalid={!!formErrors.national_id}
+                placeholder="Ex: XXXXXXXXXXX"
               />
               {formErrors.national_id && <Alert variant="danger">{formErrors.national_id}</Alert>}
             </Form.Group>
@@ -189,7 +199,7 @@ const ApplyForm = () => {
           <Col md={2}>
             <Form.Group controlId="gender" className="mb-3">
               <Form.Label>Gender</Form.Label>
-              <Form.Select name="gender" value={formData.gender} onChange={handleChange}>
+              <Form.Select name="gender" value={formData.gender} onChange={handleChange} isInvalid={!!formErrors.gender} >
                 <option value="" disabled>Select Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
@@ -206,6 +216,7 @@ const ApplyForm = () => {
                 name="faculty_name"
                 value={formData.faculty_name}
                 onChange={handleChange}
+                isInvalid={!!formErrors.faculty_name}
               >
                 <option value="" disabled>Select Faculty</option>
                 <option value="Commerce and Management Studies">Commerce and Management Studies</option>
@@ -232,6 +243,8 @@ const ApplyForm = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                isInvalid={!!formErrors.email}
+                placeholder="Ex: peiris-ps20123@stu.kln.ac.lk"
               />
               {formErrors.email && <Alert variant="danger">{formErrors.email}</Alert>}
             </Form.Group>
@@ -244,6 +257,8 @@ const ApplyForm = () => {
                 name="contact_number"
                 value={formData.contact_number}
                 onChange={handleChange}
+                isInvalid={!!formErrors.contact_number}
+                placeholder="Ex: 07XXXXXXXX"
               />
               {formErrors.contact_number && (
                 <Alert variant="danger">{formErrors.contact_number}</Alert>
@@ -262,6 +277,8 @@ const ApplyForm = () => {
                 name="street"
                 value={formData.street}
                 onChange={handleChange}
+                isInvalid={!!formErrors.street}
+                placeholder="Ex: No 12,Main Street"
               />
               {formErrors.street && <Alert variant="danger">{formErrors.street}</Alert>}
             </Form.Group>
@@ -274,6 +291,8 @@ const ApplyForm = () => {
                 name="village"
                 value={formData.village}
                 onChange={handleChange}
+                isInvalid={!!formErrors.village}
+                placeholder="Ex: Nadugala"
               />
               {formErrors.village && <Alert variant="danger">{formErrors.village}</Alert>}
             </Form.Group>
@@ -287,6 +306,7 @@ const ApplyForm = () => {
                 name="province"
                 value={formData.province}
                 onChange={handleChange}
+                isInvalid={!!formErrors.province}
               >
                 <option value="" disabled>Select Province</option>
                 {provinceOptions.map((province) => (
@@ -306,6 +326,7 @@ const ApplyForm = () => {
                 value={formData.district}
                 onChange={handleChange}
                 disabled={!formData.province}
+                isInvalid={!!formErrors.district}
               >
                 <option value="" disabled>Select District</option>
                 {districtOptions.map((district) => (
@@ -325,6 +346,8 @@ const ApplyForm = () => {
                 name="postal_code"
                 value={formData.postal_code}
                 onChange={handleChange}
+                isInvalid={!!formErrors.postal_code}
+                placeholder="Ex: XXXXX"
               />
               {formErrors.postal_code && <Alert variant="danger">{formErrors.postal_code}</Alert>}
             </Form.Group>
@@ -334,12 +357,14 @@ const ApplyForm = () => {
         <Row>
           <Col md={4}>
             <Form.Group controlId="distance_to_home" className="mb-3">
-              <Form.Label>Distance to Home</Form.Label>
+              <Form.Label>Distance to Home (km)</Form.Label>
               <Form.Control
                 type="text"
                 name="distance_to_home"
                 value={formData.distance_to_home}
                 onChange={handleChange}
+                isInvalid={!!formErrors.distance_to_home}
+                placeholder="Ex: 163"
               />
               {formErrors.distance_to_home && (
                 <Alert variant="danger">{formErrors.distance_to_home}</Alert>
@@ -356,6 +381,8 @@ const ApplyForm = () => {
                 name="main_source_of_income"
                 value={formData.main_source_of_income}
                 onChange={handleChange}
+                isInvalid={!!formErrors.main_source_of_income}
+                placeholder="Ex: Father - Doctor"
               />
               {formErrors.main_source_of_income && (
                 <Alert variant="danger">{formErrors.main_source_of_income}</Alert>
@@ -370,6 +397,8 @@ const ApplyForm = () => {
                 name="additional_source_of_income"
                 value={formData.additional_source_of_income}
                 onChange={handleChange}
+                isInvalid={!!formErrors.additional_source_of_income}
+                placeholder="Ex: Small Business"
               />
               {formErrors.additional_source_of_income && (
                 <Alert variant="danger">{formErrors.additional_source_of_income}</Alert>
@@ -378,12 +407,14 @@ const ApplyForm = () => {
           </Col>
           <Col md={4}>
             <Form.Group controlId="annual_salary" className="mb-3">
-              <Form.Label>Total Annual Salary</Form.Label>
+              <Form.Label>Total Annual Salary (Rs)</Form.Label>
               <Form.Control
                 type="text"
                 name="annual_salary"
                 value={formData.annual_salary}
                 onChange={handleChange}
+                isInvalid={!!formErrors.annual_salary}
+                placeholder="Ex: 450000.00"
               />
               {formErrors.annual_salary && (
                 <Alert variant="danger">{formErrors.annual_salary}</Alert>
@@ -400,6 +431,7 @@ const ApplyForm = () => {
                 name="number_of_family_members"
                 value={formData.number_of_family_members}
                 onChange={handleChange}
+                isInvalid={!!formErrors.number_of_family_members}
               />
               {formErrors.number_of_family_members && (
                 <Alert variant="danger">{formErrors.number_of_family_members}</Alert>
@@ -414,6 +446,7 @@ const ApplyForm = () => {
                 name="number_of_siblings"
                 value={formData.number_of_siblings}
                 onChange={handleChange}
+                isInvalid={!!formErrors.number_of_siblings}
               />
               {formErrors.number_of_siblings && (
                 <Alert variant="danger">{formErrors.number_of_siblings}</Alert>
@@ -428,6 +461,7 @@ const ApplyForm = () => {
                 name="number_of_siblings_edu"
                 value={formData.number_of_siblings_edu}
                 onChange={handleChange}
+                isInvalid={!!formErrors.number_of_siblings_edu}
               />
               {formErrors.number_of_siblings_edu && (
                 <Alert variant="danger">{formErrors.number_of_siblings_edu}</Alert>
@@ -444,6 +478,8 @@ const ApplyForm = () => {
                 name="name_of_guardian"
                 value={formData.name_of_guardian}
                 onChange={handleChange}
+                isInvalid={!!formErrors.name_of_guardian}
+                placeholder="Ex: Father - A. B. C. Silva"
               />
               {formErrors.name_of_guardian && (
                 <Alert variant="danger">{formErrors.name_of_guardian}</Alert>
@@ -459,7 +495,7 @@ const ApplyForm = () => {
                 value={formData.guardian_contact_number}
                 onChange={handleChange}
                 isInvalid={!!formErrors.guardian_contact_number}
-                placeholder="Mobile Number"
+                placeholder="Ex: 07XXXXXXXX"
               />
               {formErrors.guardian_contact_number && (
                 <Alert variant="danger">{formErrors.guardian_contact_number}</Alert>
@@ -467,11 +503,11 @@ const ApplyForm = () => {
             </Form.Group>
           </Col>
         </Row>
-        <Row><Form.Label><b>Create Your Login Password </b><p className="p1" > *Remember Your Password </p></Form.Label></Row>
+        <Row><Form.Label><b>Create Your Login Password </b></Form.Label></Row>
         <Row>
           <Col md={4}>
             <Form.Group controlId="password" className="mb-3">
-              <Form.Label>Password<p className="p2">At least 8 characters, 1 upper case letter and 1 number.</p></Form.Label>
+              <Form.Label>Password<p className="p2">Should at least 8 characters, 1 upper case letter and 1 number. </p><p className="p1" > Remember Your Password to login later. </p></Form.Label>
               <Form.Control
                 type="password"
                 name="password"

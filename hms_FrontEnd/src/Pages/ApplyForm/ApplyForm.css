@@ -42,7 +42,9 @@
 }
 .p1{
   color: rgb(17, 41, 218);
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 0;
 }
 
 
@@ -103,13 +105,13 @@
 /* Danger alert */
 .alert-danger {
   text-align: left;
-  font-size: 0.85rem;
   font-weight: normal;
   padding: 5px;
   margin-top:0;
   background-color: rgb(247, 247, 249);
   border-color:rgb(247, 247, 249);
-  color:rgb(219, 17, 17) ;
+  font-size: .875em;
+  color: var(--bs-form-invalid-color);
 }
 
 
