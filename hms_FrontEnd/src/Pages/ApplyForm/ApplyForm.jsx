@@ -110,7 +110,9 @@ const ApplyForm = () => {
 
 
   const handleSubmit = (e) => {
+  
     e.preventDefault();
+
     if (validateForm()) {
       console.log("Form Data Submitted:", formData);
 
