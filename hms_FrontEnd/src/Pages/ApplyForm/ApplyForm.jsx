@@ -23,9 +23,9 @@ const ApplyForm = () => {
     national_id: "",
     gender: "",
     email: "",
-    student_Id: "",
     contact_number: "",
     faculty_name: "",
+    student_Id: "",
     street: "",
     village: "",
     district: "",
@@ -41,7 +41,7 @@ const ApplyForm = () => {
     guardian_contact_number: "",
     annual_salary: "",
     password: "",
-    status: "",
+    status: "Pending",
     confirmInformation: false,
   });
 
@@ -233,6 +233,20 @@ const ApplyForm = () => {
                   {formErrors.faculty_name}
                 </Alert>
               )}
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group controlId="student_Id" className="mb-3">
+              <Form.Label>Student ID</Form.Label>
+              <Form.Control
+                type="text"
+                name="student_Id"
+                value={formData.student_Id}
+                onChange={handleChange}
+                isInvalid={!!formErrors.student_Id}
+                placeholder="Ex: PS/20XX/XXX"
+              />
+              {formErrors.student_Id && <Alert variant="danger">{formErrors.student_Id}</Alert>}
             </Form.Group>
           </Col>
         </Row>

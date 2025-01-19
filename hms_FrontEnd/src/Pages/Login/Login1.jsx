@@ -8,7 +8,7 @@ import { basicLoginDTO}from '../../Dto/basicLoginDto'
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
-const Login = () => {
+const Login1 = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -27,10 +27,10 @@ const Login = () => {
         if(res.data.status_code === 0){
           Swal.fire({
             title: "Login Success..!",
-            text: "You loged to the Apply Form.",
+            text: "You can see your details now..",
             icon: "success"
           });
-          navigate("/applyform");
+          navigate("/useraccount");
           return;
         }else if(res.data.status_code === 1){
           Swal.fire({
@@ -93,5 +93,5 @@ const Login = () => {
  
 };
 
-export default Login;
+export default Login1;
 

@@ -89,11 +89,15 @@
   width: 25%;
   transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
+.custom-button4.clicked{
+  background-color: aqua;
+}
 
-.custom-button2:hover {
+.custom-button4:hover {
   background-color: #1c880d;
   transform: scale(1.05);
-}
+} 
+
 
 /* Success alert */
 .alert-success {
