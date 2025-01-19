@@ -4,11 +4,13 @@ import Tool from '../../Components/Tool';
 import './Student.css';
 
 const Student = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(0);
 
-  const toggleModal = () => {
-    console.log(isModalOpen);  // Debugging line to ensure toggling
-    setIsModalOpen(!isModalOpen);
+  const toggleModal = () => { 
+    console.log(isModalOpen)
+    // Debugging line to ensure toggling
+    setIsModalOpen(10);
+    console.log(isModalOpen);  
   };
 
   return (
@@ -48,7 +50,7 @@ const Student = () => {
           </tbody>
         </table>
       </div>
-
+{/* 
       {isModalOpen && (
         <div className={`modal-overlay ${isModalOpen ? 'open' : ''}`}>
           <div className="modal">
@@ -90,18 +92,12 @@ const Student = () => {
                 <button type="submit" className="submit-button">
                   Submit
                 </button>
-                <button
-                  type="button"
-                  className="cancel-button"
-                  onClick={toggleModal}
-                >
-                  Cancel
-                </button>
+               
               </div>
             </form>
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 };
