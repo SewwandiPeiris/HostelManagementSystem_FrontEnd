@@ -10,6 +10,7 @@ import Damage from './Pages/Damage/Damage'
 import Student from './Pages/Student/Student'
 import Report from './Pages/Report/Report'
 import AdminDashBoard from './Pages/AdminDashBoard/AdminDashBoard';
+import Add_Student from './Pages/Add_Student/Add_Student';
 const App = () => {
   return (
     <Router>
@@ -41,6 +42,9 @@ const App = () => {
       </Routes>
       <Routes>
         <Route path="/admindashboard" element={<AdminDashBoard/>}/>
+      </Routes>
+      <Routes>
+        <Route path="/add_student" element={<Add_Student/>}/>
       </Routes>
     </Router>
   );

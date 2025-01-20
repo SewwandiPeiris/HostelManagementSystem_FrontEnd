@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import SideBar from '../../Components/SideBar';
 import Tool from '../../Components/Tool';
 import './Student.css';
 
 const Student = () => {
-  const [isModalOpen, setIsModalOpen] = useState(0);
+  const navigate = useNavigate();
 
-  const toggleModal = () => { 
-    console.log(isModalOpen)
-    // Debugging line to ensure toggling
-    setIsModalOpen(10);
-    console.log(isModalOpen);  
+  const navigateToAddStudent = () => {
+    navigate('/add_student'); // Update with the correct route for AddStudent page
   };
 
   return (
@@ -21,9 +19,16 @@ const Student = () => {
         <h1 className="student-title">Students Details</h1>
 
         <div className="student-header">
-          <input type="text" placeholder="Filter by Room ID" className="filter-input" />
+          <input
+            type="text"
+            placeholder="Filter by Room ID"
+            className="filter-input"
+          />
           <button className="export-button">Export as PDF</button>
-          <button className="add-student-button" onClick={toggleModal}>
+          <button
+            className="add-student-button"
+            onClick={navigateToAddStudent}
+          >
             Add Student
           </button>
         </div>
@@ -50,57 +55,8 @@ const Student = () => {
           </tbody>
         </table>
       </div>
-{/* 
-      {isModalOpen && (
-        <div className={`modal-overlay ${isModalOpen ? 'open' : ''}`}>
-          <div className="modal">
-            <h3>Add Student</h3>
-            <form>
-              <div>
-                <label>Student ID:</label>
-                <input type="text" name="studentId" required />
-              </div>
-              <div>
-                <label>Name with Initials:</label>
-                <input type="text" name="nameWithInitials" required />
-              </div>
-              <div>
-                <label>Full Name:</label>
-                <input type="text" name="fullName" required />
-              </div>
-              <div>
-                <label>Faculty Name:</label>
-                <input type="text" name="facultyName" required />
-              </div>
-              <div>
-                <label>Contact:</label>
-                <input type="text" name="contact" required />
-              </div>
-              <div>
-                <label>Email:</label>
-                <input type="email" name="email" required />
-              </div>
-              <div>
-                <label>Hostel ID:</label>
-                <input type="text" name="hostelId" required />
-              </div>
-              <div>
-                <label>Room ID:</label>
-                <input type="text" name="roomId" required />
-              </div>
-              <div className="modal-actions">
-                <button type="submit" className="submit-button">
-                  Submit
-                </button>
-               
-              </div>
-            </form>
-          </div>
-        </div>
-      )} */}
     </>
   );
 };
 
 export default Student;
-
