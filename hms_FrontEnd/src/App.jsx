@@ -11,6 +11,7 @@ import Student from './Pages/Student/Student'
 import Report from './Pages/Report/Report'
 import AdminDashBoard from './Pages/AdminDashBoard/AdminDashBoard';
 import Add_Student from './Pages/Add_Student/Add_Student';
+import Add_Damage from './Pages/Add_Damage/Add_Damage';
 const App = () => {
   return (
     <Router>
@@ -45,6 +46,9 @@ const App = () => {
       </Routes>
       <Routes>
         <Route path="/add_student" element={<Add_Student/>}/>
+      </Routes>
+      <Routes>
+        <Route path="/add_damage" element={<Add_Damage/>}/>
       </Routes>
     </Router>
   );
