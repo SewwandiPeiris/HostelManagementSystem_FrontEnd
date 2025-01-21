@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Tool from '../../Components/Tool';
-import './Add_Asset.css';
+import './Add_Room.css';
 
-const AddAsset = () => {
+const AddRoom = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    assetId: '',
-    assetName: '',
     roomId: '',
-    filledCapacity: '',
     hostelId: '',
+    roomCapacity: '',
+    filledCapacity: '',
+    availableCapacity: '',
       remarks: '',
     action:'',
   });
@@ -22,43 +22,21 @@ const AddAsset = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Asset Form Data:', formData);
+    console.log('Room Form Data:', formData);
 
     // Add your logic to save the form data, e.g., send it to an API
-    alert('Asset added successfully!');
+    alert('Room added successfully!');
 
-    // Redirect to the assets list page
-    navigate('/assets');
+    // Redirect to the rooms list page
+    navigate('/rooms');
   };
 
   return (
     <>
       <Tool />
-      <div className="add-asset-container">
-        <h1 className="add-asset-title">Add Asset Record</h1>
-        <form className="add-asset-form" onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="assetId">Asset ID:</label>
-            <input
-              type="text"
-              id="assetId"
-              name="assetId"
-              value={formData.assetId}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="assetName">Asset Name:</label>
-            <input
-              type="text"
-              id="assetName"
-              name="assetName"
-              value={formData.assetName}
-              onChange={handleChange}
-              required
-            />
-          </div>
+      <div className="add-room-container">
+        <h1 className="add-room-title">Add Room Record</h1>
+        <form className="add-room-form" onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="roomId">Room ID:</label>
             <input
@@ -66,6 +44,28 @@ const AddAsset = () => {
               id="roomId"
               name="roomId"
               value={formData.roomId}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="hostelId">Hostel ID:</label>
+            <input
+              type="text"
+              id="hostelId"
+              name="hostelId"
+              value={formData.hostelId}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="roomCapacity">Room Capacity:</label>
+            <input
+              type="number"
+              id="roomCapacity"
+              name="roomCapacity"
+              value={formData.roomCapacity}
               onChange={handleChange}
               required
             />
@@ -82,12 +82,12 @@ const AddAsset = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="hostelId">Hostel ID:</label>
+            <label htmlFor="availableCapacity">Available Capacity:</label>
             <input
-              type="text"
-              id="hostelId"
-              name="hostelId"
-              value={formData.hostelId}
+              type="number"
+              id="availableCapacity"
+              name="availableCapacity"
+              value={formData.availableCapacity}
               onChange={handleChange}
               required
             />
@@ -116,12 +116,12 @@ const AddAsset = () => {
           </div>
           <div className="form-actions">
             <button type="submit" className="submit-button">
-              Add Asset
+              Add Room
             </button>
             <button
               type="button"
               className="cancel-button"
-              onClick={() => navigate('/assets')}
+              onClick={() => navigate('/rooms')}
             >
               Cancel
             </button>
@@ -132,4 +132,4 @@ const AddAsset = () => {
   );
 };
 
-export default AddAsset;
+export default AddRoom;
