@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom'; // Use useNavigate for programmatic navigation
+import { useNavigate } from 'react-router-dom'; 
 import SideBar from '../../Components/SideBar';
 import Tool from '../../Components/Tool';
 import './Damage.css';
@@ -8,11 +8,11 @@ const Damage = () => {
   const navigate = useNavigate();
 
   const navigateToAddDamage = () => {
-    navigate('/add_damage'); // Link to AddDamage page
+    navigate('/add_damage'); 
   };
 
   const navigateToAddDamageCase = () => {
-    navigate('/add-damage-case'); // Link to AddDamageCase page
+    navigate('/add_damage_case'); 
   };
 
   return (

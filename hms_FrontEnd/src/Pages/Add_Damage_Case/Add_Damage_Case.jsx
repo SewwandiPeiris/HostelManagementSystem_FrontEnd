@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Tool from '../../Components/Tool';
-import './Add_Damage.css';
+import './Add_Damage_Case.css';
 
-const AddDamage = () => {
+const AddDamageCase = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    damageCaseId: '',
     damageId: '',
-    damageDate: '',
-    damageDescription: '',
-    damagePayment: '',
-    hostelId: '',
-    action: '',
+    studentId: '',
+    penaltyPayment: '',
+    paymentStatus: '',
   });
 
   const handleChange = (e) => {
@@ -21,21 +20,37 @@ const AddDamage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Damage Form Data:', formData);
-    alert('Damage added successfully!');
-    navigate('/damages'); // Redirect to the damages list page after submission
+    console.log('Damage Case Form Data:', formData);
+
+    // Add your logic here to save the form data, e.g., send it to a server or API
+    alert('Damage case added successfully!');
+
+    // Redirect to the damage cases list page
+    navigate('/damages');
   };
 
   return (
     <>
       <Tool />
-      <div className="add-damage-container">
-        <h1 className="add-damage-title">Add Damage Record</h1>
-        <form className="add-damage-form" onSubmit={handleSubmit}>
+      <div className="add-damage-case-container">
+        <h1 className="add-damage-case-title">Add Damage Case</h1>
+        <form className="add-damage-case-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label>Damage ID:</label>
+            <label htmlFor="damageCaseId">Damage Case ID:</label>
             <input
               type="text"
+              id="damageCaseId"
+              name="damageCaseId"
+              value={formData.damageCaseId}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="damageId">Damage ID:</label>
+            <input
+              type="text"
+              id="damageId"
               name="damageId"
               value={formData.damageId}
               onChange={handleChange}
@@ -43,58 +58,45 @@ const AddDamage = () => {
             />
           </div>
           <div className="form-group">
-            <label>Damage Date:</label>
-            <input
-              type="date"
-              name="damageDate"
-              value={formData.damageDate}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Damage Description:</label>
-            <textarea
-              name="damageDescription"
-              value={formData.damageDescription}
-              onChange={handleChange}
-              rows="4"
-              required
-            ></textarea>
-          </div>
-          <div className="form-group">
-            <label>Damage Payment (Amount):</label>
-            <input
-              type="number"
-              name="damagePayment"
-              value={formData.damagePayment}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Hostel ID:</label>
+            <label htmlFor="studentId">Student ID:</label>
             <input
               type="text"
-              name="hostelId"
-              value={formData.hostelId}
+              id="studentId"
+              name="studentId"
+              value={formData.studentId}
               onChange={handleChange}
               required
             />
           </div>
           <div className="form-group">
-            <label>Action Taken:</label>
-            <textarea
-              name="action"
-              value={formData.action}
+            <label htmlFor="penaltyPayment">Penalty Payment:</label>
+            <input
+              type="number"
+              id="penaltyPayment"
+              name="penaltyPayment"
+              value={formData.penaltyPayment}
               onChange={handleChange}
-              rows="3"
               required
-            ></textarea>
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="paymentStatus">Payment Status:</label>
+            <select
+              id="paymentStatus"
+              name="paymentStatus"
+              value={formData.paymentStatus}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Select Status</option>
+              <option value="Paid">Paid</option>
+              <option value="Unpaid">Unpaid</option>
+              <option value="Pending">Pending</option>
+            </select>
           </div>
           <div className="form-actions">
             <button type="submit" className="submit-button">
-              Add Damage
+              Add Damage Case
             </button>
             <button
               type="button"
@@ -110,4 +112,4 @@ const AddDamage = () => {
   );
 };
 
-export default AddDamage;
+export default AddDamageCase;
