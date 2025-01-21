@@ -13,6 +13,8 @@ import AdminDashBoard from './Pages/AdminDashBoard/AdminDashBoard';
 import Add_Student from './Pages/Add_Student/Add_Student';
 import Add_Damage from './Pages/Add_Damage/Add_Damage';
 import Add_Damage_Case from './Pages/Add_Damage_Case/Add_Damage_Case';
+import Add_Asset from './Pages/Add_Asset/Add_Asset';
+
 const App = () => {
   return (
     <Router>
@@ -53,6 +55,9 @@ const App = () => {
       </Routes>
       <Routes>
         <Route path="/add_damage_case" element={<Add_Damage_Case/>}/>
+      </Routes>
+      <Routes>
+        <Route path="/add_asset" element={<Add_Asset/>}/>
       </Routes>
     </Router>
   );

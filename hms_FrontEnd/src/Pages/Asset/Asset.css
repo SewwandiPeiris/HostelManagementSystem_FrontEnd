@@ -15,7 +15,7 @@
   }
   
   
-  .add-room-button {
+  .add-asset-button {
     background-color: #ffd700;
     border: none;
     padding: 10px 20px;
@@ -29,7 +29,7 @@
     margin-left: 190px;
   }
   
-  .add-room-button:hover {
+  .add-asset-button:hover {
     background-color: #ffc107;
   }
   
