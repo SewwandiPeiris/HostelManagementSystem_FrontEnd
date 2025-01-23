@@ -1,10 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SideBar from '../../Components/SideBar';
 import Tool from '../../Components/Tool';
 
 import "./Hostel.css";
+
 const Hostel = () => {
+  const navigate = useNavigate();
+
+  const navigateToAddHostel = () => {
+    navigate('/add_hostel'); // Ensure this route matches the one in your router setup
+  };
+
   return (
     <>
       <SideBar />
@@ -12,7 +19,12 @@ const Hostel = () => {
       
       <div className="hostels-container">
         <h1 className="hostels-title">Hostel Details</h1>
-        <button className="add-hostel-button">Add Hostel</button>
+        <button 
+          className="add-hostel-button" 
+          onClick={navigateToAddHostel}
+        >
+          Add Hostel
+        </button>
         <table className="hostels-table">
           <thead>
             <tr>

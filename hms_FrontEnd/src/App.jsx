@@ -15,7 +15,7 @@ import Add_Damage from './Pages/Add_Damage/Add_Damage';
 import Add_Damage_Case from './Pages/Add_Damage_Case/Add_Damage_Case';
 import Add_Asset from './Pages/Add_Asset/Add_Asset';
 import Add_Room from './Pages/Add_Room/Add_Room';
-
+import Add_Hostel from './Pages/Add_Hostel/Add_Hostel';
 const App = () => {
   return (
     <Router>
@@ -62,6 +62,9 @@ const App = () => {
       </Routes>
       <Routes>
         <Route path="/add_room" element={<Add_Room/>}/>
+      </Routes>
+      <Routes>
+        <Route path="/add_hostel" element={<Add_Hostel/>}/>
       </Routes>
     </Router>
   );
