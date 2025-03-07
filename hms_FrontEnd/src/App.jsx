@@ -5,10 +5,10 @@ import Home  from './Pages/Home/Home'
 import Hostel from './Pages/Hostel/Hostel'
 import Room from './Pages/Room/Room'
 import Asset from './Pages/Asset/Asset'
-import Admin from './Pages/Admin/Admin'
-import Damage from './Pages/Damage/Damage'
-import Student from './Pages/Student/Student'
-import Report from './Pages/Report/Report'
+import Admin from './Pages/Admin/Admin';
+import Damage from './Pages/Damage/Damage';
+import Student from './Pages/Student/Student';
+import Report from './Pages/Report/Report';
 import AdminDashBoard from './Pages/AdminDashBoard/AdminDashBoard';
 import Add_Student from './Pages/Add_Student/Add_Student';
 import Add_Damage from './Pages/Add_Damage/Add_Damage';
@@ -16,6 +16,8 @@ import Add_Damage_Case from './Pages/Add_Damage_Case/Add_Damage_Case';
 import Add_Asset from './Pages/Add_Asset/Add_Asset';
 import Add_Room from './Pages/Add_Room/Add_Room';
 import Add_Hostel from './Pages/Add_Hostel/Add_Hostel';
+console.log("hello")
+import Select_Student from './Pages/Select_Student/Select_Student';
 const App = () => {
   return (
     <Router>
@@ -66,7 +68,11 @@ const App = () => {
       <Routes>
         <Route path="/add_hostel" element={<Add_Hostel/>}/>
       </Routes>
+      <Routes>
+        <Route path="/select_student" element={<Select_Student/>}/>
+      </Routes>
     </Router>
+
   );
 }
 

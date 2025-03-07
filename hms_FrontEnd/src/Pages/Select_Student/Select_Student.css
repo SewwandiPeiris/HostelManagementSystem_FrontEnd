@@ -1,0 +1,150 @@
+/* Full-page styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Container to center everything */
+.select-student-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Title styling */
+.select-student-title {
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+}
+
+/* Back button styling */
+.back-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: 0.3s ease;
+    margin-left:1180px;
+}
+
+
+.back-button:hover {
+    background-color: #e3e5e7;
+}
+
+/* Table styling */
+.select-student-table {
+    width: 95%;
+    height: 80vh; /* Makes the table cover most of the screen */
+    border-collapse: collapse;
+    background: rgb(243, 241, 241);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Header */
+.select-student-table thead {
+    background-color: #eaedf0;
+    color: rgb(15, 15, 15);
+    font-size: 14px;
+}
+
+.select-student-table th, .select-student-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+/* Alternate row color */
+.select-student-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Empty row message */
+.empty-row {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hostels-table {
+        font-size: 14px;
+    }
+
+    .back-button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
