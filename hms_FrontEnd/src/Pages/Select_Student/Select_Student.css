@@ -20,16 +20,16 @@ body, html {
 /* Title styling */
 .select-student-title {
     margin-bottom: 20px;
-    font-size: 28px;
+    font-size: 35px;
     font-weight: bold;
     text-align: center;
-    color: #333;
+    color: #203d0e;
 }
 
 /* Back button styling */
 .back-button {
-    background-color: #007bff;
-    color: white;
+    background-color: #2562d4;
+    color: rgb(231, 222, 222);
     border: none;
     padding: 10px 20px;
     font-size: 16px;
@@ -38,6 +38,7 @@ body, html {
     margin-bottom: 15px;
     transition: 0.3s ease;
     margin-left:1180px;
+    font-weight: bold;
 }
 
 

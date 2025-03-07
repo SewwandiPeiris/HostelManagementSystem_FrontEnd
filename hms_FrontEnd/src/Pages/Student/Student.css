@@ -102,7 +102,7 @@
 
 /* Modal Box */
 .modal {
-  background-color: #080808;
+  background-color: #faefef;
   padding: 20px;
   border-radius: 10px;
   width: 400px;
@@ -160,7 +160,7 @@
 
 
 .modal-header {
-  background-color: #007bff; 
+  background-color: #80aa2c; 
   color: white;
   border-radius: 10px 10px 0 0;
 }
