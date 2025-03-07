@@ -11,6 +11,11 @@ const Student = () => {
     navigate('/add_student'); // Update with the correct route for AddStudent page
   };
 
+  const handleSelectStudent = () => {
+    // Add logic for selecting a student (e.g., open a modal, navigate to another page)
+    console.log("Select Student button clicked");
+  };
+
   return (
     <>
       <SideBar />
@@ -21,15 +26,19 @@ const Student = () => {
         <div className="student-header">
           <input
             type="text"
-            placeholder="Filter by Room ID"
+            placeholder="Filter by Distance"
             className="filter-input"
           />
-          <button className="export-button">Export as PDF</button>
-          <button
-            className="add-student-button"
-            onClick={navigateToAddStudent}
+          <input
+            type="text"
+            placeholder="Filter by Annual_Salary"
+            className="filter-input"
+          />
+          <button 
+            className="add-select-student" 
+            onClick={handleSelectStudent} // Added onClick event
           >
-            Add Student
+            Select Student
           </button>
         </div>
 
@@ -42,13 +51,12 @@ const Student = () => {
               <th>Faculty Name</th>
               <th>Contact</th>
               <th>Email</th>
-              <th>Hostel ID</th>
-              <th>Room ID</th>
+              <th>Action </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td colSpan="8" className="no-data">
+              <td colSpan="7" className="no-data">
                 No data available
               </td>
             </tr>
