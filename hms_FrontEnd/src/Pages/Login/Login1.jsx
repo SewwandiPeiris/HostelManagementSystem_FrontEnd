@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import{ useState } from 'react';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
@@ -7,6 +7,7 @@ import { logingStudentProfile,decodeJwtToken } from '../../Service/loginService'
 import { basicLoginDTO}from '../../Dto/basicLoginDto'
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import {studentDetailsDto} from "../../Dto/studentDetails.js";
 
 const Login1 = () => {
   const [username, setUsername] = useState('');
@@ -27,8 +28,9 @@ const Login1 = () => {
         sessionStorage.setItem("token",res.data.content)
 
         const decryptedJWT = decodeJwtToken(res.data.content);
-        sessionStorage.setItem("status",decryptedJWT.Status)
-        sessionStorage.setItem("role",decryptedJWT.Role)
+        const studentDetails=studentDetailsDto(decryptedJWT.id,decryptedJWT.Status,decryptedJWT.Role);
+
+        sessionStorage.setItem("studentDetails",JSON.stringify(studentDetails))
         console.log("Decrypted JWT:", decryptedJWT);
 
         if(res.data.status_code === 0){
