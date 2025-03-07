@@ -41,7 +41,7 @@ const UserAccount = ({ userData }) => {
         </Col>
       </Row>
 
-      {status === "Pending" && (
+      {status === "pending" && (
         <Row className="mt-4">
           <Col xs={12} md={6} className="details-box">
             <h6>Full Name: {userData.full_name}</h6>

@@ -48,7 +48,6 @@ const ApplyForm = () => {
     name_of_guardian: "",
     guardian_contact_number: "",
     annual_salary: "",
-    password: "",
     status: "Pending",
     confirmInformation: false,
   });
@@ -114,6 +113,9 @@ const ApplyForm = () => {
 
     if (validateForm()) {
     //  console.log(formData)
+    
+    const username=sessionStorage.getItem("username");
+    const password=sessionStorage.getItem("password");
 
          // Map form data to backend DTO structure
     const studentDto = {
@@ -123,8 +125,8 @@ const ApplyForm = () => {
       nameWithInitials: formData.name_with_initials,
       nationalId: formData.national_id,
       gender: formData.gender,
-      email: formData.email,
-      password: formData.password,
+      email: username,
+      password: password,
       userRole: 0, // Default value for prospective students
       studentId: formData.student_Id,
       contactNumber: formData.contact_number,
@@ -169,6 +171,7 @@ const ApplyForm = () => {
 
       setFormSubmitted(true);
     } else {
+      console.log("scsagr")
       setFormSubmitted(false);
     }
   };

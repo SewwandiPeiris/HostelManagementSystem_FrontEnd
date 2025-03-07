@@ -3,7 +3,7 @@ import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import './Login.css';
-import { loginToApplyForm } from '../../Service/loginService';
+import { logingStudentProfile,decodeJwtToken } from '../../Service/loginService';
 import { basicLoginDTO}from '../../Dto/basicLoginDto'
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -22,8 +22,15 @@ const Login1 = () => {
       setErrorMessage('');
       const loginDto=basicLoginDTO(username,password)
      
-      loginToApplyForm(loginDto).then((res)=>{
+      logingStudentProfile(loginDto).then((res)=>{
         console.log(res);
+        sessionStorage.setItem("token",res.data.content)
+
+        const decryptedJWT = decodeJwtToken(res.data.content);
+        sessionStorage.setItem("status",decryptedJWT.Status)
+        sessionStorage.setItem("role",decryptedJWT.Role)
+        console.log("Decrypted JWT:", decryptedJWT);
+
         if(res.data.status_code === 0){
           Swal.fire({
             title: "Login Success..!",

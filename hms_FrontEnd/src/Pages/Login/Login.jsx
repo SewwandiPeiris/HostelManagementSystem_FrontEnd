@@ -24,6 +24,8 @@ const Login = () => {
      
       loginToApplyForm(loginDto).then((res)=>{
         console.log(res);
+        sessionStorage.setItem("username",username);
+        sessionStorage.setItem("password",password);
         if(res.data.status_code === 0){
           Swal.fire({
             title: "Login Success..!",
