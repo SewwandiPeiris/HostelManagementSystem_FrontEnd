@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { Form, Button, Container, Row, Col, Alert, Image } from "react-bootstrap";
 import logo from '../../assets/logo.png';
 import "./ApplyForm.css";
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import { prospectiveStudentSave } from "../../Service/studentService";
+
 
 const ApplyForm = () => {
   const sriLankaProvinces = {
@@ -15,8 +19,12 @@ const ApplyForm = () => {
     "Uva Province": ["Badulla", "Monaragala"],
     "Sabaragamuwa Province": ["Ratnapura", "Kegalle"],
   };
+  const navigate=useNavigate();
+
+  
 
   const [formData, setFormData] = useState({
+  
     first_Name: "",
     last_Name: "",
     name_with_initials: "",
@@ -45,6 +53,8 @@ const ApplyForm = () => {
     confirmInformation: false,
   });
 
+
+
   const [formErrors, setFormErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -66,17 +76,6 @@ const ApplyForm = () => {
         const formattedKey = key.replace(/_/g, " ");
         errors[key] = `${formattedKey.charAt(0).toUpperCase() + formattedKey.slice(1)} is required`;
       }
-    }
-    // Password Validation
-    if (formData.password !== formData.rePassword) {
-      errors.password = "Passwords do not match!";
-      errors.rePassword = "Passwords do not match!";
-    }
-
-    const passwordRegex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$/; // At least 1 capital letter, 1 number, and 8 characters
-    if (formData.password && !passwordRegex.test(formData.password)) {
-      errors.password =
-        "Password must contain at least one capital letter, one number, and be at least 8 characters long.";
     }
 
     // Email validation
@@ -114,13 +113,66 @@ const ApplyForm = () => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log("Form Data Submitted:", formData);
+    //  console.log(formData)
+
+         // Map form data to backend DTO structure
+    const studentDto = {
+      id: "", // Backend typically generates this
+      firstName: formData.first_Name,
+      lastName: formData.last_Name,
+      nameWithInitials: formData.name_with_initials,
+      nationalId: formData.national_id,
+      gender: formData.gender,
+      email: formData.email,
+      password: formData.password,
+      userRole: 0, // Default value for prospective students
+      studentId: formData.student_Id,
+      contactNumber: formData.contact_number,
+      status: formData.status.toLowerCase(), // Ensure lowercase
+      street: formData.street,
+      village: formData.village,
+      distanceToHome: parseFloat(formData.distance_to_home) || 0,
+      district: formData.district,
+      province: formData.province,
+      postalCode: formData.postal_code,
+      mainIncome: formData.main_source_of_income,
+      additionalIncome: formData.additional_source_of_income,
+      numberFamilyMembers: parseInt(formData.number_of_family_members, 10) || 0,
+      numberOfSiblings: parseInt(formData.number_of_siblings, 10) || 0,
+      numberOfSiblingsEdu: parseInt(formData.number_of_siblings_edu, 10) || 0,
+      nameOfGuardian: formData.name_of_guardian,
+      guardianContactNumber: formData.guardian_contact_number,
+      facultyName: formData.faculty_name,
+      annualSalary: parseFloat(formData.annual_salary) || 0,
+    };
+
+    console.log(studentDto)
+
+    prospectiveStudentSave(studentDto).then((res)=>{
+            console.log(res);
+            if(res.data.status_code === 0){
+              Swal.fire({
+                title: "Success..!",
+                text: "Form submitted successfuly..",
+                icon: "success"
+              });
+              navigate("/");
+              return;
+            }else if(res.data.status_code === 1){
+              Swal.fire({
+                icon: "error",
+                title: "Oops..!",
+                text: "Can't Submit.. Please Re try!",
+              });
+            }
+          })
 
       setFormSubmitted(true);
     } else {
       setFormSubmitted(false);
     }
   };
+
 
   const provinceOptions = Object.keys(sriLankaProvinces);
   const districtOptions = formData.province ? sriLankaProvinces[formData.province] : [];
@@ -516,46 +568,6 @@ const ApplyForm = () => {
               {formErrors.guardian_contact_number && (
                 <Alert variant="danger">{formErrors.guardian_contact_number}</Alert>
               )}
-            </Form.Group>
-          </Col>
-        </Row>
-        <Row><Form.Label><b>Create Your Login Password </b></Form.Label></Row>
-        <Row>
-          <Col md={4}>
-            <Form.Group controlId="password" className="mb-3">
-              <Form.Label>Password<p className="p2">Should at least 8 characters, 1 upper case letter and 1 number. </p><p className="p1" > Remember Your Password to login later. </p></Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                isInvalid={!!formErrors.password}
-                placeholder="Enter your password"
-              />
-              <Form.Control.Feedback type="invalid">
-                {formErrors.password}
-              </Form.Control.Feedback>
-            </Form.Group>
-          </Col>
-          <Col md={3}>
-          <Form.Label></Form.Label>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={4}>
-            <Form.Group controlId="rePassword" className="mb-3">
-              <Form.Label>Re-enter Password</Form.Label>
-              <Form.Control
-                type="password"
-                name="rePassword"
-                value={formData.rePassword}
-                onChange={handleChange}
-                isInvalid={!!formErrors.rePassword}
-                placeholder="Re-enter your password"
-              />
-              <Form.Control.Feedback type="invalid">
-                {formErrors.rePassword}
-              </Form.Control.Feedback>
             </Form.Group>
           </Col>
         </Row>
