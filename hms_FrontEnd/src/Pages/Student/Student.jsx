@@ -105,16 +105,16 @@ const Student = () => {
       {/* ✅ Modal for Viewing Student Details */}
       <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Student Details</Modal.Title>
+          <Modal.Title className="custom-modal1">Student Details</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body className="custom-modal2">
           <p><strong>Student ID:</strong> {selectedStudentId}</p>
           <p><strong>Name:</strong> John Doe</p>
           <p><strong>Email:</strong> johndoe@example.com</p>
           <p><strong>Faculty:</strong> Science</p>
           <p><strong>Contact:</strong> +94 771234567</p>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="custom-modal3">
           <Button variant="secondary" onClick={() => setModalShow(false)}>
             Close
           </Button>
