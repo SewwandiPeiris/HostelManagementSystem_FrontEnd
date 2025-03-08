@@ -4,6 +4,8 @@ import boyAvatar from "../../assets/boy.jpeg";
 import girlAvatar from "../../assets/girl.jpg";
 import "./UserAccount.css";
 import { getprospectiveStudentById,getEligibleStudentByEmail } from "../../Service/studentService"
+ 
+
 
 
 const UserAccount = () => {
@@ -16,34 +18,35 @@ const UserAccount = () => {
     const dto = sessionStorage.getItem("studentDetails");
     const detailsDto = JSON.parse(dto);
     const tokan = sessionStorage.getItem("token")
-    if (detailsDto.status === "pending") {
+ 
 
-      // Fetch user data from backend
-      getprospectiveStudentById(detailsDto.id, tokan)
-        .then(response => {
-          // setUserData(response.data);
+      if (detailsDto.status === "pending") {
 
-          setUserData(response.data.content)
-
-          console.log(response.data.content)
-        })
-        .catch(error => console.error("Error fetching user data:", error));
-
-    } else if (detailsDto.status === "selected") {
-
-      getEligibleStudentByEmail(detailsDto.email, tokan)
-        .then(response => {
-          // setUserData(response.data);
-
-          setEligible(response.data.content)
-
-          console.log(response.data.content)
-        })
-        .catch(error => console.error("Error fetching user data:", error));
-
-    } else {
-
-    }
+        // Fetch user data from backend
+        getprospectiveStudentById(detailsDto.id, tokan)
+          .then(response => {
+            // setUserData(response.data);
+  
+            setUserData(response.data.content)
+  
+            console.log(response.data.content)
+          })
+          .catch(error => console.error("Error fetching user data:", error));
+  
+      } else if (detailsDto.status === "selected") {
+  
+        getEligibleStudentByEmail(detailsDto.email, tokan)
+          .then(response => {
+            // setUserData(response.data);
+  
+            setEligible(response.data.content)
+  
+            console.log(response.data.content)
+          })
+          .catch(error => console.error("Error fetching user data:", error));
+  
+      } 
+   
 
 
 

@@ -39,7 +39,15 @@ const Login1 = () => {
             text: "You can see your details now..",
             icon: "success"
           });
-          navigate("/useraccount");
+
+          if(studentDetails.role==="Admin"){
+            console.log("admin")
+            navigate("/admindashboard")
+
+          }else if(studentDetails.role==="Student"){
+            navigate("/useraccount");
+          }
+          
           return;
         }else if(res.data.status_code === 1){
           Swal.fire({
@@ -49,6 +57,10 @@ const Login1 = () => {
             
           });
         }
+
+      
+
+    
        
        
       })
