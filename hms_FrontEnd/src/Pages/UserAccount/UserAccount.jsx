@@ -3,7 +3,8 @@ import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import boyAvatar from "../../assets/boy.jpeg";
 import girlAvatar from "../../assets/girl.jpg";
 import "./UserAccount.css";
-import { getprospectiveStudentById } from "../../Service/studentService"
+import { getprospectiveStudentById,getEligibleStudentByEmail } from "../../Service/studentService"
+
 
 const UserAccount = () => {
   const [prosepectStudentData, setUserData] = useState(null);
@@ -34,7 +35,7 @@ const UserAccount = () => {
         .then(response => {
           // setUserData(response.data);
 
-          setUserData(response.data.content)
+          setEligible(response.data.content)
 
           console.log(response.data.content)
         })
