@@ -1,0 +1,65 @@
+.add-damage-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-damage-title {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  .add-damage-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .add-damage-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .add-damage-form input,
+  .add-damage-form textarea,
+  .add-damage-form select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .add-damage-form textarea {
+    resize: none;
+  }
+  
+  .add-damage-form .form-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .submit-button,
+  .cancel-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submit-button {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .cancel-button {
+    background-color: #e63030;
+    color: white;
+  }
+  

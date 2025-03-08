@@ -1,0 +1,55 @@
+.hostels-container {
+    padding: 20px;
+    
+    font-family: Arial, sans-serif;
+    margin-left: 200px;
+  }
+  
+  .hostels-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .add-hostel-button {
+    background-color: #ffc107;
+    border: none;
+    padding: 10px 20px;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .add-hostel-button:hover {
+    background-color: #e0a800;
+  }
+  
+  .hostels-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .hostels-table th,
+  .hostels-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  .hostels-table th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+  }
+  
+  .empty-row {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+  }
+  
