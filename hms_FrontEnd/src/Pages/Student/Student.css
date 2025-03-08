@@ -79,8 +79,20 @@
   color: #999;
 }
 
+.custom-modal1{
+  color: #006400;
+}
+
+.custom-modal2{
+  background-color: #d0e7d0;
+}
+
+.custom-modal.modal-dialog {
+  min-width: 80%; 
+}
+
 /* Modal Background */
-.modal-overlay {
+/* .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -100,7 +112,7 @@
   pointer-events: auto;
 }
 
-/* Modal Box */
+
 .modal {
   background-color: #faefef;
   padding: 20px;
@@ -110,12 +122,12 @@
   margin-left: 400px;
 }
 
-/* Modal Actions */
+
 .modal-actions {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
-}
+} */
 
 /* Submit and Cancel Buttons */
 .submit-button,
@@ -144,7 +156,7 @@
 }
 
 
-.modal-dialog {
+/* .modal-dialog {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -175,4 +187,4 @@
 .modal-footer .btn-secondary {
   background-color: #6c757d;
   border: none;
-}
+} */

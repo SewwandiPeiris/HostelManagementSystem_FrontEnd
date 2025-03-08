@@ -1,11 +1,12 @@
-.custom-navbar {
+.custom-navbar8 {
     background-color: white; 
+    width: 1350px;
     height: 2cm;
     padding: 5px 20px;
-margin-left:63px;
-margin-right: 10px;
+    margin-left:60px;
+    
   }
-  .custom-navbar .navbar-brand {
+  .custom-navbar8 .navbar-brand8 {
     color: rgb(35, 136, 67) !important; 
     font-size: 2rem; 
     font-weight: bold; 

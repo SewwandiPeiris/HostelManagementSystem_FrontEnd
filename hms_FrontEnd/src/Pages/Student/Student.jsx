@@ -10,7 +10,7 @@ import { getAllProspectiveStudent } from "../../Service/adminService.js";
 const Student = () => {
   const navigate = useNavigate();
   const [modalShow, setModalShow] = useState(false);
-  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [selectedStudent, setSelectedStudentId] = useState(null);
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
@@ -30,11 +30,12 @@ const Student = () => {
     navigate('/select_student'); // ✅ Navigates to Select Student page
   };
 
-
-  const handleViewStudent = (student) => {
-    setSelectedStudent(student);
-    setModalShow(true);
+  const handleViewStudent = (studentId) => {
+    console.log(`Viewing details for student ID: ${studentId}`);
+    setSelectedStudentId(studentId);
+    setModalShow(true); // ✅ Open modal when View is clicked
   };
+
 
   return (
       <>
@@ -92,9 +93,9 @@ const Student = () => {
         {/* Modal for Viewing Student Details */}
         <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
           <Modal.Header closeButton>
-            <Modal.Title>Student Details</Modal.Title>
+            <Modal.Title className="custom-modal1">Student Details</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
+          <Modal.Body className="custom-modal2">
             {selectedStudent && (
                 <>
                   <p><strong>Student ID:</strong> {selectedStudent.studentId}</p>
@@ -105,7 +106,7 @@ const Student = () => {
                 </>
             )}
           </Modal.Body>
-          <Modal.Footer>
+          <Modal.Footer className="custom-modal3">
             <Button variant="secondary" onClick={() => setModalShow(false)}>Close</Button>
           </Modal.Footer>
         </Modal>
