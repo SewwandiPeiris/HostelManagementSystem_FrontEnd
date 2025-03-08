@@ -1,65 +1,59 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import SideBar from '../../Components/SideBar';
-import Tool from '../../Components/Tool';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import './Student.css';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import SideBar from "../../Components/SideBar";
+import Tool from "../../Components/Tool";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import "./Student.css";
+import { getAllProspectiveStudent } from "../../Service/adminService.js";
 
 const Student = () => {
   const navigate = useNavigate();
   const [modalShow, setModalShow] = useState(false);
-  const [selectedStudentId, setSelectedStudentId] = useState(null);
+  const [selectedStudent, setSelectedStudent] = useState(null);
+  const [students, setStudents] = useState([]);
 
-  const navigateToAddStudent = () => {
-    navigate('/add_student'); // ✅ Navigates to Add Student page
-  };
+  useEffect(() => {
+    const tokan = sessionStorage.getItem("token");
+
+    getAllProspectiveStudent(tokan)
+        .then((res) => {
+          console.log(res.data.content);
+          setStudents(res.data.content); // ✅ Store API data
+        })
+        .catch((error) => {
+          console.error("Error fetching student data:", error);
+        });
+  }, []);
 
   const handleSelectStudent = () => {
     navigate('/select_student'); // ✅ Navigates to Select Student page
   };
 
-  const handleViewStudent = (studentId) => {
-    console.log(`Viewing details for student ID: ${studentId}`);
-    setSelectedStudentId(studentId);
-    setModalShow(true); // ✅ Open modal when View is clicked
-  };
 
-  const handleDeleteStudent = (studentId) => {
-    console.log(`Deleting student ID: ${studentId}`);
-    alert(`Student ID ${studentId} has been deleted.`);
+  const handleViewStudent = (student) => {
+    setSelectedStudent(student);
+    setModalShow(true);
   };
 
   return (
-    <>
-      <SideBar />
-      <Tool />
-      <div className="student-container">
-        <h1 className="student-title">Students Details</h1>
+      <>
+        <SideBar />
+        <Tool />
+        <div className="student-container">
+          <h1 className="student-title">Students Details</h1>
 
-        <div className="student-header">
-          <input
-            type="text"
-            placeholder="Filter by Distance"
-            className="filter-input"
-          />
-          <input
-            type="text"
-            placeholder="Filter by Annual Salary"
-            className="filter-input"
-          />
-          <input
-            type="text"
-            placeholder="Filter by Number of family member"
-            className="filter-input"
-          />
-          <button className="add-select-student" onClick={handleSelectStudent}>
-            View Select Students
-          </button>
-        </div>
+          <div className="student-header">
+            <input type="text" placeholder="Filter by Distance" className="filter-input" />
+            <input type="text" placeholder="Filter by Annual Salary" className="filter-input" />
+            <input type="text" placeholder="Filter by Number of family member" className="filter-input" />
+            <button className="add-select-student" onClick={handleSelectStudent}>
+              View Select Students
+            </button>
+          </div>
 
-        <table className="student-table">
-          <thead>
+          <table className="student-table">
+            <thead>
             <tr>
               <th>Student ID</th>
               <th>Name with Initials</th>
@@ -69,58 +63,53 @@ const Student = () => {
               <th>Email</th>
               <th>Action</th>
             </tr>
-          </thead>
-          <tbody>
-            {/* Sample student row, replace with dynamic data */}
-            <tr>
-              <td>1001</td>
-              <td>J. Doe</td>
-              <td>John Doe</td>
-              <td>Science</td>
-              <td>+94 771234567</td>
-              <td>johndoe@example.com</td>
-              <td>
-                <button
-                  className="action-btn view-btn"
-                  onClick={() => handleViewStudent(1001)}
-                >
-                  View
-                </button>
+            </thead>
+            <tbody>
+            {students.length > 0 ? (
+                students.map((student) => (
+                    <tr key={student.id}>
+                      <td>{student.id}</td>
+                      <td>{student.nameWithInitials}</td>
+                      <td>{student.firstName+" "+student.lastName}</td>
+                      <td>{student.facultyName}</td>
+                      <td>{student.contactNumber}</td>
+                      <td>{student.email}</td>
+                      <td>
+                        <button className="action-btn view-btn" onClick={() => handleViewStudent(student)}>View</button>
+                        <button className="action-btn delete-btn">Delete</button>
+                      </td>
+                    </tr>
+                ))
+            ) : (
+                <tr>
+                  <td colSpan="7" className="no-data">No data available</td>
+                </tr>
+            )}
+            </tbody>
+          </table>
+        </div>
 
-                <button
-                  className="action-btn delete-btn"
-                  onClick={() => handleDeleteStudent(1001)}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="7" className="no-data">No data available</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      {/* ✅ Modal for Viewing Student Details */}
-      <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Student Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p><strong>Student ID:</strong> {selectedStudentId}</p>
-          <p><strong>Name:</strong> John Doe</p>
-          <p><strong>Email:</strong> johndoe@example.com</p>
-          <p><strong>Faculty:</strong> Science</p>
-          <p><strong>Contact:</strong> +94 771234567</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => setModalShow(false)}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
+        {/* Modal for Viewing Student Details */}
+        <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
+          <Modal.Header closeButton>
+            <Modal.Title>Student Details</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {selectedStudent && (
+                <>
+                  <p><strong>Student ID:</strong> {selectedStudent.studentId}</p>
+                  <p><strong>Name:</strong> {selectedStudent.firstName + " "+ selectedStudent.lastName}</p>
+                  <p><strong>Email:</strong> {selectedStudent.email}</p>
+                  <p><strong>Faculty:</strong> {selectedStudent.facultyName}</p>
+                  <p><strong>Contact:</strong> {selectedStudent.contactNumber}</p>
+                </>
+            )}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => setModalShow(false)}>Close</Button>
+          </Modal.Footer>
+        </Modal>
+      </>
   );
 };
 
