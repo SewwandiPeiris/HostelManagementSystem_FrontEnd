@@ -28,7 +28,7 @@ const Login1 = () => {
         sessionStorage.setItem("token",res.data.content)
 
         const decryptedJWT = decodeJwtToken(res.data.content);
-        const studentDetails=studentDetailsDto(decryptedJWT.id,decryptedJWT.Status,decryptedJWT.Role);
+        const studentDetails=studentDetailsDto(decryptedJWT.id,decryptedJWT.Status,decryptedJWT.Role, decryptedJWT.sub);
 
         sessionStorage.setItem("studentDetails",JSON.stringify(studentDetails))
         console.log("Decrypted JWT:", decryptedJWT);
