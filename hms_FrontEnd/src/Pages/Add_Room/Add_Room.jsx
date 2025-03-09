@@ -1,34 +1,70 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Tool from '../../Components/Tool';
 import './Add_Room.css';
+import {addRoom, getAllHostel} from "../../Service/adminService.js";
+import Swal from "sweetalert2";
 
 const AddRoom = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     roomId: '',
-    hostelId: '',
-    roomCapacity: '',
-    filledCapacity: '',
-    availableCapacity: '',
-      remarks: '',
-    action:'',
+    hostel_id: '',
+    room_capacity: '',
+    filled_capacity: '',
+    remark: '',
   });
+
+  const [hostels, setHostelList] = useState([]);
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+
+    getAllHostel(token)
+        .then((res) => {
+          console.log(res.data.content);
+          setHostelList(res.data.content); // ✅ Store API data
+        })
+        .catch((error) => {
+          console.error("Error fetching student data:", error);
+        });
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Room Form Data:', formData);
+    const token = sessionStorage.getItem("token");
+    addRoom(token,formData).then((res)=>{
+      console.log(res.data.content)
+      if(res.data.status_code === 0){
+        Swal.fire({
+          title: "SUCCESS..!",
+          text: "Room Add Success...",
+          icon: "success"
+        });
+        navigate("/room")
+        return;
+      }else if(res.data.status_code === 1){
+        Swal.fire({
+          icon: "error",
+          title: "OOPS..!",
+          text: "Can't Submit.. Please Re try!",
+        });
+      }else if(res.data.status_code=== 3){
+        Swal.fire({
+          icon: "error",
+          title: "OOPS..!",
+          text: "This Room already exits.. Please Re try!",
+        });
 
-    // Add your logic to save the form data, e.g., send it to an API
-    alert('Room added successfully!');
-
-    // Redirect to the rooms list page
-    navigate('/rooms');
+      }
+    })
   };
 
   return (
@@ -49,70 +85,58 @@ const AddRoom = () => {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="hostelId">Hostel ID:</label>
-            <input
-              type="text"
-              id="hostelId"
-              name="hostelId"
-              value={formData.hostelId}
-              onChange={handleChange}
-              required
-            />
+            <label htmlFor="hostel_id">Hostel:</label>
+            <select
+                id="hostel_id"
+                name="hostel_id"
+                value={formData.hostel_id}
+                onChange={handleChange}
+                required
+            >
+              <option value=""> Select a Hostel </option>
+              {hostels.map((hostel) => (
+                  <option key={hostel.id} value={hostel.id}>
+                    {hostel.hostel_name} {/* or hostel.hostelId if name is not available */}
+                  </option>
+              ))}
+            </select>
           </div>
+
           <div className="form-group">
-            <label htmlFor="roomCapacity">Room Capacity:</label>
-            <input
-              type="number"
-              id="roomCapacity"
-              name="roomCapacity"
-              value={formData.roomCapacity}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="filledCapacity">Filled Capacity:</label>
+            <label htmlFor="room_capacity">Room Capacity:</label>
             <input
               type="number"
-              id="filledCapacity"
-              name="filledCapacity"
-              value={formData.filledCapacity}
+              id="room_capacity"
+              name="room_capacity"
+              value={formData.room_capacity}
               onChange={handleChange}
               required
             />
           </div>
           <div className="form-group">
-            <label htmlFor="availableCapacity">Available Capacity:</label>
+            <label htmlFor="filled_capacity">Filled Capacity:</label>
             <input
               type="number"
-              id="availableCapacity"
-              name="availableCapacity"
-              value={formData.availableCapacity}
+              id="filled_capacity"
+              name="filled_capacity"
+              value={formData.filled_capacity}
               onChange={handleChange}
               required
             />
           </div>
           <div className="form-group">
-            <label htmlFor="remarks">Remarks:</label>
+            <label htmlFor="remark">Remarks:</label>
             <textarea
-              id="remarks"
-              name="remarks"
-              value={formData.remarks}
+              id="remark"
+              name="remark"
+              value={formData.remark}
               onChange={handleChange}
               rows="4"
               required
             ></textarea>
                   </div>
-                  <div className="form-group">
-            <label htmlFor="remarks">Action:</label>
-            <textarea
-              id="remarks"
-              name="remarks"
-              value={formData.remarks}
-              onChange={handleChange}
-              rows="4"
-              required
-            ></textarea>
+            <div className="form-group">
+
           </div>
           <div className="form-actions">
             <button type="submit" className="submit-button">
