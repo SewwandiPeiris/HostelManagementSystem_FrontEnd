@@ -1,3 +1,11 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #efefef;
+}
+
 .student-container {
   font-family: Arial, sans-serif;
   margin: 20px;
@@ -34,16 +42,54 @@
   background-color: #fbc02d;
   border: none;
   color: black;
-  padding: 10px 15px;
+  padding: 10px 10px;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
+  margin-top: 0;
+  height: 1cm;
 }
 
 .export-button:hover,
-.add-student-button:hover {
-  background-color: #e6a600;
+.add-select-button:focus {
+  border-color: #006400;
+  box-shadow: 0 0 5px rgba(158, 175, 153, 0.5);
+}
+
+.view-btn {
+  background-image: url("../../assets/view.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+  width: 30px;  /* Adjust width */
+  height: 15px;  /* Adjust height */
+  border: none;
+  cursor: pointer;
+  color: white; /* Adjust text color if needed */
+  border-radius: 1cm;
+}
+
+.delete-btn {
+  background-image: url("../../assets/delete.png"); /* Replace with actual path */
+  background-color: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30px;
+  height: 15px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 1cm;
+}
+.delete-btn:hover {
+  background-color:red;
+}
+
+.view-btn:hover{
+  background-color:rgb(90, 90, 254);
 }
 
 /* Table Styling */
@@ -51,22 +97,24 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.student-table th,
 .student-table td {
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 10px 10px;
   text-align: left;
+  margin-left: 20px;
 }
-
+.student-table tr {
+  height: 1cm;
+}
 .student-table th {
   background-color: #f1f1f1;
   font-weight: bold;
-}
-
-.student-table tr:nth-child(even) {
-  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 10px 0px;
+  text-align: center;
 }
 
 .student-table tr:hover {
@@ -91,100 +139,28 @@
   min-width: 80%; 
 }
 
-/* Modal Background */
-/* .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(8, 8, 8, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
+.custom-input5{
+padding-right: 30px;
+width: 200px;
+height: 1cm;
+border-color: #bdbdbd;
 }
 
-.modal-overlay.open {
-  opacity: 1;
-  pointer-events: auto;
+.custom-input5:focus{
+  border-color: #006400;
+  box-shadow: 0 0 5px rgba(158, 175, 153, 0.5);
 }
 
-
-.modal {
-  background-color: #faefef;
-  padding: 20px;
-  border-radius: 10px;
-  width: 400px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  margin-left: 400px;
+.custom-input6{
+  width: 300px;
 }
 
-
-.modal-actions {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-} */
-
-/* Submit and Cancel Buttons */
-.submit-button,
-.cancel-button {
-  padding: 10px;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.custom-input7{
+  margin-bottom: 15px;
+  border-radius: 0.25cm;
+  
 }
 
-.submit-button {
-  background-color: green;
+.pp{
+  font-size: small;
 }
-
-.cancel-button {
-  background-color: red;
-}
-
-.submit-button:hover {
-  background-color: darkgreen;
-}
-
-.cancel-button:hover {
-  background-color: darkred;
-}
-
-
-/* .modal-dialog {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh; 
-}
-
-
-.modal-content {
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-}
-
-
-.modal-header {
-  background-color: #80aa2c; 
-  color: white;
-  border-radius: 10px 10px 0 0;
-}
-
-
-.modal-body p {
-  margin-bottom: 10px;
-  font-size: 16px;
-}
-
-
-.modal-footer .btn-secondary {
-  background-color: #6c757d;
-  border: none;
-} */
