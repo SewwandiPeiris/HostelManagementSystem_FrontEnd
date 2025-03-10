@@ -10,8 +10,7 @@ const AdminDashBoard= () => {
     <>
       <SideBar />
           <Tool />
-          <Dashboard/>
-      <Bar/>
+          
         
           </>
   );
