@@ -1,4 +1,4 @@
-import React from "react";
+/*import React from "react";
 import { Doughnut } from "react-chartjs-2";
 
 const Card = ({ title, data, chartData }) => {
@@ -26,4 +26,4 @@ const Card = ({ title, data, chartData }) => {
   );
 };
 
-export default Card;
+export default Card;*/
