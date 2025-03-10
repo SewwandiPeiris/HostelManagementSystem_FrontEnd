@@ -9,7 +9,7 @@ const Hostel = () => {
   const navigate = useNavigate();
 
   const navigateToAddHostel = () => {
-    navigate('/add_hostel'); // Ensure this route matches the one in your router setup
+    navigate('/add_hostel'); 
   };
 
   return (
@@ -43,7 +43,7 @@ const Hostel = () => {
             </tr>
           </thead>
           <tbody>
-            {/* Rows can be dynamically rendered here */}
+            {}
             <tr>
               <td colSpan="12" className="empty-row">No data available</td>
             </tr>
