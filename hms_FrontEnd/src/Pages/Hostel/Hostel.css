@@ -1,55 +1,144 @@
 .hostels-container {
-    padding: 20px;
-    
-    font-family: Arial, sans-serif;
-    margin-left: 200px;
-  }
-  
-  .hostels-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .add-hostel-button {
-    background-color: #ffc107;
-    border: none;
-    padding: 10px 20px;
-    color: #000;
-    font-size: 14px;
-    font-weight: bold;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 20px;
-  }
-  
-  .add-hostel-button:hover {
-    background-color: #e0a800;
-  }
-  
-  .hostels-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  }
-  
-  .hostels-table th,
-  .hostels-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-    font-size: 14px;
-  }
-  
-  .hostels-table th {
-    background-color: #f1f1f1;
-    font-weight: bold;
-  }
-  
-  .empty-row {
-    text-align: center;
-    font-style: italic;
-    color: #888;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  margin-left: 200px;
+  padding: 20px;
+  background-color: white;
+}
+
+.hostels-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.hostels-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.add-hostel-button {
+  background-color: #fbc02d;
+  border: none;
+  color: black;
+  padding: 10px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 0;
+  height: 1cm;
+}
+
+.add-hostel-button:focus {
+  border-color: #006400;
+  box-shadow: 0 0 5px rgba(158, 175, 153, 0.5);
+}
+
+.hostels-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.hostels-table td {
+  border: 1px solid #ddd;
+  padding: 10px 10px;
+  text-align: left;
+  margin-left: 20px;
+}
+
+.hostels-table tr {
+  height: 1cm;
+}
+.hostels-table th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  padding: 10px 0px;
+  text-align: center;
+}
+
+.hostels-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.no-data {
+  text-align: center;
+  font-style: italic;
+  color: #999;
+}
+
+.custom-modal1{
+  color: #006400;
+}
+
+.custom-modal2{
+  background-color: #d0e7d0;
+}
+
+.custom-modal.modal-dialog {
+  min-width: 80%; 
+}
+
+.form-label {
+  font-weight: 400;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+
+.form-control {
+  max-width: auto;
+  border-radius: 5px;
+  border: 0.5px solid #b4b9be;
+  font-size: 0.9rem;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-right: 1cm;
+}
+
+.form-control:focus {
+  border-color: #006400;
+  box-shadow: 0 0 5px rgba(158, 175, 153, 0.5);
+}
+
+.save-button {
+  color: white;
+  border: none;
+  margin: 20px 40px;
+  padding: 6pxpx 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  width: 20%;
+  height: 1cm;
+  transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+
+.save-button:hover {
+  background-color: #3f81e4;
+  transform: scale(1.05);
+}
+
+.edit-btn {
+  background-image: url("../../assets/edit.png"); /* Replace with actual path */
+  background-color: white;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 30px;
+  height: 15px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 1cm;
+}
+.edit-btn:hover {
+  background-color:rgb(90, 90, 254);
+}

@@ -1,45 +1,52 @@
 .admins-container {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    background-color: white; 
-    
-    
-margin-left: 200px;
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  margin-left: 200px;
+  padding: 20px;
+  background-color: white;
 }
     
   
-  .admins-container h2 {
-    margin-bottom: 20px;
-    font-size:25px;
+  .admins-title {
+    font-size: 25px;
     font-weight: bold;
-    color: #333;
+    margin-bottom: 20px;
   }
   
   .admins-table {
-    width: 100%;
+    width: 75%;
     border-collapse: collapse;
-    background: #fff;
-    
+    margin-top: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
-  .admins-table th,
   .admins-table td {
     border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-    font-size: 14px;
+    padding: 10px 10px;
+    text-align: left;
+    margin-left: 20px;
   }
-  
+  .admins-table tr {
+    height: 1cm;
+  }
   .admins-table th {
-    background-color: #f0f0f0;
+    background-color: #f1f1f1;
     font-weight: bold;
+    border: 1px solid #ddd;
+    padding: 10px 0px;
+    text-align: center;
   }
   
-  .admins-table .no-data {
-    color: #888;
+  .admins-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .no-data {
+    text-align: center;
     font-style: italic;
+    color: #999;
   }
-  
+
   .btn {
     padding: 5px 10px;
     font-size: 14px;
@@ -48,7 +55,7 @@ margin-left: 200px;
     cursor: pointer;
   }
   
-  .delete-btn {
+  /* .delete-btn {
     background-color: #e74c3c;
     color: white;
   }
@@ -65,4 +72,4 @@ margin-left: 200px;
   .update-btn:hover {
     background-color: #2980b9;
   }
-  
+   */

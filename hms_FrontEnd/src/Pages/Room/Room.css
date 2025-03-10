@@ -1,68 +1,127 @@
-
 .hostel-rooms-container {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    margin-right: 200px;
-  }
-  
-  
-  .title {
-    text-align: left;
-    margin-bottom: 20px;
-    color: #333;
-    margin-left: 190px;
-    font-size:25px;
-    font-weight: bold;
-  }
-  
-  
-  .add-room-button {
-    background-color: #ffd700;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    color: #333;
-    transition: background-color 0.3s;
-    margin-left: 190px;
-  }
-  
-  .add-room-button:hover {
-    background-color: #ffc107;
-  }
-  
-  
-  .hostel-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    margin-left: 190px;
-    overflow-y: auto;
-  }
-  
-  .hostel-table th,
-  .hostel-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: left;
-    font-size: 14px;
-  }
-  
-  .hostel-table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-  }
-  
-  .hostel-table tbody tr:hover {
-    background-color: #f9f9f9;
-  }
-  
-  
-  .hostel-table td {
-    color: #555;
-    height: 40px;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  margin-left: 200px;
+  padding: 20px;
+  background-color: white;
+}
+
+
+.hostel-rooms-title {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hostel-rooms-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.add-room-button {
+  background-color: #fbc02d;
+  border: none;
+  color: black;
+  padding: 10px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 0;
+  height: 1cm;
+}
+
+.add-room-button:focus{
+  border-color: #006400;
+  box-shadow: 0 0 5px rgba(158, 175, 153, 0.5);
+}
+
+.edit-btn {
+  background-image: url("../../assets/edit.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: white;
+  width: 30px;  /* Adjust width */
+  height: 15px;  /* Adjust height */
+  border: none;
+  cursor: pointer;
+  color: white; /* Adjust text color if needed */
+  border-radius: 1cm;
+}
+
+.edit-btn:hover{
+  background-color:rgb(90, 90, 254);
+}
+
+.hostel-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hostel-table td {
+  border: 1px solid #ddd;
+  padding: 10px 10px;
+  text-align: left;
+  margin-left: 20px;
+}
+.hostel-table tr {
+  height: 1cm;
+}
+.hostel-table th {
+  background-color: #f1f1f1;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  padding: 10px 0px;
+  text-align: center;
+}
+
+.hostel-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.no-data {
+  text-align: center;
+  font-style: italic;
+  color: #999;
+}
+
+.custom-modal1{
+  color: #006400;
+}
+
+.custom-modal2{
+  background-color: #d0e7d0;
+}
+
+.custom-modal.modal-dialog {
+  min-width: 80%; 
+}
+
+
+.form-label {
+  font-weight: 400;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+
+.form-control {
+  max-width: auto;
+  border-radius: 5px;
+  border: 0.5px solid #b4b9be;
+  font-size: 0.9rem;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-right: 1cm;
+}
+
+.form-control:focus {
+  border-color: #006400;
+  box-shadow: 0 0 5px rgba(158, 175, 153, 0.5);
+}
