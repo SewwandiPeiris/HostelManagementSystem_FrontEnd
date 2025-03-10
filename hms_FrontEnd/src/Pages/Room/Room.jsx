@@ -6,6 +6,7 @@ import './Room.css';
 import {deleteRoomById, getAllEligibleStudent, getAllRooms} from "../../Service/adminService.js";
 import Swal from "sweetalert2";
 
+
 const Room = () => {
   const navigate = useNavigate();
 
@@ -59,6 +60,7 @@ const Room = () => {
     navigate('/add_room'); // Ensure this route matches the one defined in your router
   };
 
+
   return (
     <>
       <SideBar />
@@ -75,6 +77,7 @@ const Room = () => {
         <table className="hostel-table">
           <thead>
             <tr>
+              <th>No</th>
               <th>Room ID</th>
               <th>Hostel </th>
               <th>Room Capacity</th>
@@ -86,8 +89,9 @@ const Room = () => {
           </thead>
           <tbody>
           {rooms.length > 0 ? (
-              rooms.map((room) => (
+              rooms.map((room,index) => (
                   <tr key={room.id}>
+                    <td>{++index}</td>
                     <td>{room.roomId}</td>
                     <td>{room.hostelDetail.id + " - "+ room.hostelDetail.hostel_name}</td>
                     <td>{room.room_capacity}</td>

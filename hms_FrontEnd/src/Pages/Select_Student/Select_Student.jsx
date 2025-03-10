@@ -172,9 +172,9 @@ const SelectStudent = () => {
                     </thead>
                     <tbody>
                         {students.length > 0 ? (
-                            students.map((student) => (
+                            students.map((student,index) => (
                                 <tr key={student.id}>
-                                    <td>{student.id}</td>
+                                    <td>{++index}</td>
                                     <td>{student.studentId}</td>
                                     <td>{student.firstName + " " + student.lastName}</td>
                                     <td>{student.facultyName}</td>

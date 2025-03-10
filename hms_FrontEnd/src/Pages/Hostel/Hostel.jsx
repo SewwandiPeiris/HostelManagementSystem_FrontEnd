@@ -44,6 +44,7 @@ const Hostel = () => {
         <table className="hostels-table">
           <thead>
             <tr>
+              <th>No</th>
               <th>Hostel ID</th>
               <th>Hostel Name</th>
               <th>Location</th>
@@ -57,8 +58,9 @@ const Hostel = () => {
           </thead>
           <tbody>
           {hostels.length > 0 ? (
-              hostels.map((hostal) => (
+              hostels.map((hostal,index) => (
                   <tr key={hostal.id}>
+                    <td>{++index}</td>
                     <td>{hostal.id}</td>
                     <td>{hostal.hostel_name}</td>
                     <td>{hostal.location}</td>
