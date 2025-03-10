@@ -39,6 +39,14 @@ export const getAllProspectiveStudentByFilter=(token,param)=>axios.get("http://l
     params:param
 });
 
+export const updateStudentStatus=(token,param)=>axios.put("http://localhost:8081/api/user/update-status/",null,{
+    headers: {
+        Authorization: `Bearer ${token}`, // Attach token
+        "Content-Type": "application/json",
+    },
+    params:param
+});
+
 
 export const getAllEligibleStudent=(token)=>axios.get("http://localhost:8081/api/user/get-all-eligible-student",{
     headers: {

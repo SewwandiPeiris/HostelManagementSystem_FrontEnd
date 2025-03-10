@@ -11,7 +11,7 @@ import {
   getAllHostel,
   getAllProspectiveStudent,
   getAllProspectiveStudentByFilter,
-  getRoomByHostelId, updateHostelAndRoomCapacity
+  getRoomByHostelId, updateHostelAndRoomCapacity, updateStudentStatus
 } from "../../Service/adminService.js";
 import Swal from "sweetalert2";
 
@@ -28,21 +28,15 @@ const Student = () => {
   const [rooms, setRooms] = useState([]);
   const [selectedHostelId, setSelectedHostelId] = useState("");
   const [selectedRoomId, setSelectedRoomId] = useState("");
+  const [studentId, setStudentId] = useState('');
+  const [status, setStatus] = useState('');
+
 
 
   useEffect(() => {
-    const tokan = sessionStorage.getItem("token");
-
-    getAllProspectiveStudent(tokan)
-      .then((res) => {
-        console.log(res.data.content);
-        setStudents(res.data.content); 
-      })
-      .catch((error) => {
-        console.error("Error fetching student data:", error);
-      });
-
-    getAllHostel(tokan)
+    const token = sessionStorage.getItem("token");
+    lodeStudentTable();
+    getAllHostel(token)
         .then((res)=>{
           setHostels(res.data.content)
 
@@ -51,6 +45,19 @@ const Student = () => {
 
 
   }, []);
+
+  const lodeStudentTable=()=>{
+    const token = sessionStorage.getItem("token");
+
+    getAllProspectiveStudent(token)
+        .then((res) => {
+          console.log(res.data.content);
+          setStudents(res.data.content);
+        })
+        .catch((error) => {
+          console.error("Error fetching student data:", error);
+        });
+  }
 
   useEffect(() => {
     if (selectedHostelId) {
@@ -98,7 +105,8 @@ const Student = () => {
   };
 
 
-  const saveEligibleStudent= (selectedStudent) =>{
+  const saveEligibleStudent= (selectedStudent,stats) =>{
+
 
     if (!selectedStudent){
       return
@@ -156,6 +164,8 @@ const Student = () => {
          console.log(res.data.content);
 
        })
+       updateStudent(selectedStudent.studentId,stats);
+
         navigate("/select_student");
         return;
 
@@ -168,9 +178,24 @@ const Student = () => {
       }
 
     });
-
-
   };
+
+
+  const updateStudent=(id,stats)=>{
+    const token = sessionStorage.getItem("token");
+    const params = {};
+
+    params.studentId = id;
+    params.status=stats;
+    updateStudentStatus(token,params).then((res)=>{
+      console.log(res.data.content);
+      if(res.data.status_code==0){
+          lodeStudentTable();
+      }
+
+    })
+
+  }
 
   return (
     <>
@@ -223,6 +248,7 @@ const Student = () => {
               <th>Student Number</th>
               <th>Full Name</th>
               <th>Faculty Name</th>
+              <th>Status</th>
               <th>Contact</th>
               <th>Email</th>
               <th>Distance(km)</th>
@@ -238,13 +264,13 @@ const Student = () => {
                   <td>{student.studentId}</td>
                   <td>{student.firstName + " " + student.lastName}</td>
                   <td>{student.facultyName}</td>
+                  <td>{student.status}</td>
                   <td>{student.contactNumber}</td>
                   <td>{student.email}</td>
                   <td>{student.distanceToHome}</td>
                   <td>{student.annualSalary}</td>
                   <td>
                     <button className="action-btn view-btn" onClick={() => handleViewStudent(student)}></button>
-                    <button className="action-btn delete-btn"></button>
                   </td>
                 </tr>
               ))
@@ -313,8 +339,8 @@ const Student = () => {
           )}
         </Modal.Body>
         <Modal.Footer className="custom-modal3">
-          <Button variant="primary" className="custom-button6" onClick={() => saveEligibleStudent(selectedStudent)} >Eligeble</Button>
-          <Button variant="danger" className="custom-button7">Not Eligeble</Button>
+          <Button variant="primary" className="custom-button6" onClick={() => saveEligibleStudent(selectedStudent,"selected")} >Eligeble</Button>
+          <Button variant="danger" className="custom-button7"  onClick={() => updateStudent(selectedStudent.studentId,"rejected")} >Not Eligeble</Button>
         </Modal.Footer>
       </Modal>
     </>

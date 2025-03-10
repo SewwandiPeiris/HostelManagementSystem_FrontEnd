@@ -11,7 +11,7 @@ import {
     getAllEligibleStudent,
     getAllHostel,
     getAllProspectiveStudent,
-    getRoomByHostelId
+    getRoomByHostelId, updateStudentStatus
 } from "../../Service/adminService.js";
 import Swal from "sweetalert2";
 
@@ -83,7 +83,7 @@ const SelectStudent = () => {
         setModalShow(true); // ✅ Open modal when View is clicked
       };
 
-    const deleteStudent=(id)=>{
+    const deleteStudent=(student)=>{
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be delete this student!",
@@ -95,7 +95,7 @@ const SelectStudent = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 const token = sessionStorage.getItem("token");
-                deleteEligibleStudent(token,id).then((res)=>{
+                deleteEligibleStudent(token,student.id).then((res)=>{
                     if(res.data.status_code==0){
                         Swal.fire({
                             title: "Deleted!",
@@ -103,12 +103,30 @@ const SelectStudent = () => {
                             icon: "success"
                         });
                         lodeStudentTable();
+                        updateStudent(student.studentId,"pending")
+
                     }
                 })
 
 
             }
         });
+    }
+
+    const updateStudent=(id,stats)=>{
+        const token = sessionStorage.getItem("token");
+        const params = {};
+
+        params.studentId = id;
+        params.status=stats;
+        updateStudentStatus(token,params).then((res)=>{
+            console.log(res.data.content);
+            if(res.data.status_code==0){
+                lodeStudentTable();
+            }
+
+        })
+
     }
 
     return (
@@ -184,7 +202,7 @@ const SelectStudent = () => {
                                     <td>{student.roomId}</td>
                                     <td>
                                         <button className="action-btn view-btn" onClick={() => handleViewStudent(student)}></button>
-                                        <button className="action-btn delete-btn" onClick={() => deleteStudent(student.id)}></button>
+                                        <button className="action-btn delete-btn" onClick={() => deleteStudent(student)}></button>
                                     </td>
                                 </tr>
                             ))
