@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import SideBar from '../../Components/SideBar';
 import Tool from '../../Components/Tool';
 import './Room.css';
-import { getAllRooms} from "../../Service/adminService.js";
+import {deleteRoomById, getAllEligibleStudent, getAllRooms} from "../../Service/adminService.js";
+import Swal from "sweetalert2";
 
 const Room = () => {
   const navigate = useNavigate();
@@ -11,17 +12,48 @@ const Room = () => {
   const [rooms, setRoomList] = useState([]);
 
   useEffect(() => {
-    const tokan = sessionStorage.getItem("token");
+    lodeRoomTable();
+  }, []);
 
-    getAllRooms(tokan).then((res)=>{
+  const lodeRoomTable=()=>{
+    const token = sessionStorage.getItem("token");
+
+    getAllRooms(token).then((res)=>{
       console.log(res.data.content);
       setRoomList(res.data.content);
     }).
     catch((error) => {
       console.error("Error fetching student data:", error);
     });
+  };
 
-  }, []);
+  const deleteRoom=(id)=>{
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be delete this student!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const token = sessionStorage.getItem("token");
+        deleteRoomById(token,id).then((res)=>{
+          if(res.data.status_code==0){
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success"
+            });
+            lodeRoomTable();
+          }
+        })
+
+
+      }
+    });
+  }
 
   const navigateToAddRoom = () => {
     navigate('/add_room'); // Ensure this route matches the one defined in your router
@@ -57,14 +89,14 @@ const Room = () => {
               rooms.map((room) => (
                   <tr key={room.id}>
                     <td>{room.roomId}</td>
-                    <td>{room.hostelDetail.id+ " - "+ room.hostelDetail.hostel_name}</td>
+                    <td>{room.hostelDetail.id + " - "+ room.hostelDetail.hostel_name}</td>
                     <td>{room.room_capacity}</td>
                     <td>{room.filled_capacity}</td>
                     <td>{(room.room_capacity-room.filled_capacity)  }</td>
                     <td>{room.remark}</td>
                     <td>
-                      <button className="action-btn view-btn" onClick={() => handleViewStudent(room)}>View</button>
-                      <button className="action-btn delete-btn">Delete</button>
+                      <button className="action-btn view-btn" ></button>
+                      <button className="action-btn delete-btn" onClick={() => deleteRoom(room.id)}></button>
                     </td>
                   </tr>
               ))
