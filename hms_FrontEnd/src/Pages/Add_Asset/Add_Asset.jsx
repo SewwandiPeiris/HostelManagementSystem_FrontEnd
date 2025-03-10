@@ -24,10 +24,10 @@ const AddAsset = () => {
     e.preventDefault();
     console.log('Asset Form Data:', formData);
 
-    // Add your logic to save the form data, e.g., send it to an API
+    
     alert('Asset added successfully!');
 
-    // Redirect to the assets list page
+    
     navigate('/assets');
   };
 
