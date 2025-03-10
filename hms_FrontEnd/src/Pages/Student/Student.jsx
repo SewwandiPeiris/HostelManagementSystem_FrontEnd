@@ -12,17 +12,17 @@ const Student = () => {
   const [selectedStudentId, setSelectedStudentId] = useState(null);
 
   const navigateToAddStudent = () => {
-    navigate('/add_student'); // ✅ Navigates to Add Student page
+    navigate('/add_student'); 
   };
 
   const handleSelectStudent = () => {
-    navigate('/select_student'); // ✅ Navigates to Select Student page
+    navigate('/select_student'); 
   };
 
   const handleViewStudent = (studentId) => {
     console.log(`Viewing details for student ID: ${studentId}`);
     setSelectedStudentId(studentId);
-    setModalShow(true); // ✅ Open modal when View is clicked
+    setModalShow(true); 
   };
 
   const handleDeleteStudent = (studentId) => {
@@ -71,7 +71,7 @@ const Student = () => {
             </tr>
           </thead>
           <tbody>
-            {/* Sample student row, replace with dynamic data */}
+            {}
             <tr>
               <td>1001</td>
               <td>J. Doe</td>
