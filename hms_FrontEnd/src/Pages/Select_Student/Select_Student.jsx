@@ -6,9 +6,9 @@ import './Select_Student.css';
 const SelectStudent = () => {
     const navigate = useNavigate();
 
-    // Function to navigate back to the Student page
+    
     const handleBack = () => {
-        navigate('/student'); // Replace with the correct route of your Student page
+        navigate('/student');  
     };
 
     return (
@@ -43,7 +43,7 @@ const SelectStudent = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* Rows can be dynamically rendered here */}
+                    {}
                     <tr>
                         <td colSpan="12" className="empty-row">No data available</td>
                     </tr>
