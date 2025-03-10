@@ -6,15 +6,70 @@ import Tool from "../../Components/Tool";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import '../Student/Student.css';
+import {
+    deleteEligibleStudent,
+    getAllEligibleStudent,
+    getAllHostel,
+    getAllProspectiveStudent,
+    getRoomByHostelId
+} from "../../Service/adminService.js";
+import Swal from "sweetalert2";
 
 const SelectStudent = () => {
     const navigate = useNavigate();
-    console.log("hjjhbv")
+
       const [modalShow, setModalShow] = useState(false);
-      console.log("festred")
       const [selectedStudent, setSelectedStudentId] = useState(null);
-      console.log("qaewzrdx")
       const [students, setStudents] = useState([]);
+      const [hostels, setHostels] = useState([]);
+      const [rooms, setRooms] = useState([]);
+      const [selectedHostelId, setSelectedHostelId] = useState("");
+      const [selectedRoomId, setSelectedRoomId] = useState("");
+
+
+
+    useEffect(() => {
+        const token = sessionStorage.getItem("token");
+
+        lodeStudentTable(token);
+        getAllHostel(token)
+            .then((res)=>{
+                setHostels(res.data.content)
+                console.log(res.data.content)
+            })
+
+    }, []);
+
+
+    useEffect(() => {
+        if (selectedHostelId) {
+            const token = sessionStorage.getItem("token");
+            getRoomByHostelId(selectedHostelId,token).then((res)=>{
+                if(res.data.status_code=== 3){
+                    Swal.fire({
+                        icon: "error",
+                        title: "OOPS..!",
+                        text: "No Rooms in this Hostel",
+                    });
+                    setRooms([]);
+                    return;
+                }
+                setRooms(res.data.content);
+            })
+        }
+    }, [selectedHostelId]);
+
+    const lodeStudentTable=()=>{
+        const token = sessionStorage.getItem("token");
+        getAllEligibleStudent(token)
+            .then((res) => {
+                console.log(res.data.content);
+                setStudents(res.data.content); // ✅ Store API data
+            })
+            .catch((error) => {
+                console.error("Error fetching student data:", error);
+            });
+    };
     
 
     // Function to navigate back to the Student page
@@ -28,6 +83,34 @@ const SelectStudent = () => {
         setModalShow(true); // ✅ Open modal when View is clicked
       };
 
+    const deleteStudent=(id)=>{
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be delete this student!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const token = sessionStorage.getItem("token");
+                deleteEligibleStudent(token,id).then((res)=>{
+                    if(res.data.status_code==0){
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        lodeStudentTable();
+                    }
+                })
+
+
+            }
+        });
+    }
+
     return (
         <>
             <Tool />
@@ -36,15 +119,37 @@ const SelectStudent = () => {
             <div className="student-container">
                 <h1 className="student-title">Eligible Students</h1>
                 <div className="student-header">
-                    <Form.Select className="custom-input5" size="sm">
-                        <option value="" disabled>Select the Hostel</option>
-                        <option value="Bulugaha">All Hostels</option>
-                        <option value="Mahara">Mahara</option>
+                    <Form.Select
+                        className="custom-input6"
+                        size="sm"
+                        value={selectedHostelId}
+                        onChange={(e) => setSelectedHostelId(e.target.value)}
+                    >
+
+                        <option value="" disabled={true} > Select a Hostel </option>
+                        {hostels.length > 0 &&
+                            hostels.map((hostel) => (
+                                <option key={hostel.id} value={hostel.id}>
+                                    {hostel.hostel_name}
+                                </option>
+                            ))}
                     </Form.Select>
-                    <Form.Select className="custom-input5" size="sm">
-                        <option value="" disabled>Select the Hostel</option>
-                        <option value="Bulugaha">All Hostels</option>
-                        <option value="Mahara">Mahara</option>
+
+
+                    <Form.Select
+                        className="custom-input6"
+                        size="sm"
+                        value={selectedRoomId}
+                        onChange={(e) => setSelectedRoomId(e.target.value)}
+                    >
+
+                        <option value="" disabled={true} > Select a Room </option>
+                        {rooms.length > 0 &&
+                            rooms.map((room) => (
+                                <option key={room.id} value={room.id}>
+                                    {room.roomId}
+                                </option>
+                            ))}
                     </Form.Select>
 
                     <button className="add-select-student" onClick={handleBack}>
@@ -75,11 +180,11 @@ const SelectStudent = () => {
                                     <td>{student.facultyName}</td>
                                     <td>{student.contactNumber}</td>
                                     <td>{student.email}</td>
-                                    <td>{student.hostel_id}</td>
-                                    {/* <td>{student.RoomId}</td> */}
+                                    <td>{student.hostel_detail.hostel_name}</td>
+                                    <td>{student.roomId}</td>
                                     <td>
                                         <button className="action-btn view-btn" onClick={() => handleViewStudent(student)}></button>
-                                        <button className="action-btn delete-btn"></button>
+                                        <button className="action-btn delete-btn" onClick={() => deleteStudent(student.id)}></button>
                                     </td>
                                 </tr>
                             ))
