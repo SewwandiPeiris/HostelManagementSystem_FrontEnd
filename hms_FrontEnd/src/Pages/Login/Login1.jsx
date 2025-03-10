@@ -3,7 +3,7 @@ import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import Header from '../../Components/Header';
 import Footer from '../../Components/Footer';
 import './Login.css';
-import { logingStudentProfile,decodeJwtToken } from '../../Service/loginService';
+import { decodeJwtToken, loginStudentProfile} from '../../Service/loginService';
 import { basicLoginDTO}from '../../Dto/basicLoginDto'
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -22,24 +22,22 @@ const Login1 = () => {
     } else {
       setErrorMessage('');
       const loginDto=basicLoginDTO(username,password)
-     
-      logingStudentProfile(loginDto).then((res)=>{
-        console.log(res);
-        sessionStorage.setItem("token",res.data.content)
 
-        const decryptedJWT = decodeJwtToken(res.data.content);
-        const studentDetails=studentDetailsDto(decryptedJWT.id,decryptedJWT.Status,decryptedJWT.Role, decryptedJWT.sub);
-
-        sessionStorage.setItem("studentDetails",JSON.stringify(studentDetails))
-        console.log("Decrypted JWT:", decryptedJWT);
-
-        if(res.data.status_code === 0){
+      loginStudentProfile(loginDto).then((res)=>{
+        console.log(res.data.content);
+        if(res.data.status_code === 0) {
           Swal.fire({
             title: "Login Success..!",
-            text: "You can see your details now..",
+            text: "You log to user profile...",
             icon: "success"
           });
 
+          sessionStorage.setItem("token",res.data.content)
+          const decryptedJWT = decodeJwtToken(res.data.content);
+          const studentDetails=studentDetailsDto(decryptedJWT.id,decryptedJWT.Status,decryptedJWT.Role, decryptedJWT.sub);
+
+          sessionStorage.setItem("studentDetails",JSON.stringify(studentDetails))
+          console.log("Decrypted JWT:", decryptedJWT);
           if(studentDetails.role==="Admin"){
             console.log("admin")
             navigate("/admindashboard")
@@ -47,22 +45,16 @@ const Login1 = () => {
           }else if(studentDetails.role==="Student"){
             navigate("/useraccount");
           }
-          
-          return;
-        }else if(res.data.status_code === 1){
+
+        }else if(res.data.status_code === 2){
           Swal.fire({
             icon: "error",
             title: "Oops..!",
             text: "Invalid Login Credential.",
-            
+
           });
         }
 
-      
-
-    
-       
-       
       })
   
       // Add your login logic here

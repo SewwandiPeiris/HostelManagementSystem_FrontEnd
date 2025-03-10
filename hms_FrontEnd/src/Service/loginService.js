@@ -3,7 +3,7 @@ import { jwtDecode  } from 'jwt-decode';
 
 export const loginToApplyForm=(loginDto)=> axios.post("http://localhost:8081/api/student/login", loginDto);
 
-export const logingStudentProfile=(loginDto)=> axios.post("http://localhost:8081/api/main/login",loginDto);
+export const loginStudentProfile=(loginDto)=> axios.post("http://localhost:8081/api/main/login",loginDto);
 
 
 export const decodeJwtToken = (token) => {
@@ -13,5 +13,5 @@ export const decodeJwtToken = (token) => {
     } catch (error) {
       console.error("Invalid Token:", error);
       return null;
-    }
-  };
+    }
+};
