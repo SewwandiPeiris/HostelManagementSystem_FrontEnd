@@ -1,100 +1,57 @@
-/*import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
-import axios from "axios";
-import { Form, FormControl, FormLabel } from "react-bootstrap";
-import "./AdminDashboard.css";
+import { Container, Row, Col, Card } from "react-bootstrap";
 
-const AdminDashBoard = () => {
-  const [stats, setStats] = useState({ totalHostels: 0, totalRooms: 0, totalCapacity: 0, totalFilledCapacity: 0, totalAvailableCapacity: 0 });
-  const [barChartData, setBarChartData] = useState({ series: [], categories: [] });
-  const [pieChartData, setPieChartData] = useState({ series: [], labels: [] });
+const Dashboard = () => {
+  const [chartData, setChartData] = useState({
+    series: [
+      { name: "PRODUCT A", data: [44, 55, 41, 67, 22, 43] },
+      { name: "PRODUCT B", data: [13, 23, 20, 8, 13, 27] },
+      { name: "PRODUCT C", data: [11, 17, 15, 15, 21, 14] },
+      { name: "PRODUCT D", data: [21, 7, 25, 13, 22, 8] },
+    ],
+    categories: [
+      "01/01/2011 GMT",
+      "01/02/2011 GMT",
+      "01/03/2011 GMT",
+      "01/04/2011 GMT",
+      "01/05/2011 GMT",
+      "01/06/2011 GMT",
+    ],
+  });
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get("/api/hostel-capacity"); // Adjust API URL
-      const data = response.data;
-
-      const totalHostels = data.length;
-      const totalRooms = data.reduce((acc, item) => acc + item.total_rooms, 0);
-      const totalCapacity = data.reduce((acc, item) => acc + item.total_capacity, 0);
-      const totalFilledCapacity = data.reduce((acc, item) => acc + item.filled_capacity, 0);
-      const totalAvailableCapacity = data.reduce((acc, item) => acc + item.available_capacity, 0);
-
-      setStats({ totalHostels, totalRooms, totalCapacity, totalFilledCapacity, totalAvailableCapacity });
-
-      const filledCapacity = data.map((item) => item.filled_capacity);
-      const availableCapacity = data.map((item) => item.available_capacity);
-      const categories = data.map((item) => item.hostel_name);
-
-      setBarChartData({
-        series: [
-          { name: "Filled Capacity", data: filledCapacity },
-          { name: "Available Capacity", data: availableCapacity },
-        ],
-        categories,
-      });
-
-      setPieChartData({
-        series: [totalFilledCapacity, totalAvailableCapacity],
-        labels: ["Filled Capacity", "Available Capacity"],
-      });
-    } catch (error) {
-      console.error("Error fetching data", error);
-    }
-  };
-
-  const barOptions = {
-    chart: { type: "bar", height: 350, stacked: true, toolbar: { show: true } },
+  const options = {
+    chart: { type: "bar", height: 350, stacked: true, toolbar: { show: true }, zoom: { enabled: true } },
+    responsive: [
+      { breakpoint: 480, options: { legend: { position: "bottom", offsetX: -10, offsetY: 0 } } },
+    ],
     plotOptions: {
       bar: {
         horizontal: false,
-        borderRadius: 5,
+        borderRadius: 10,
+        borderRadiusApplication: "end",
+        borderRadiusWhenStacked: "last",
         dataLabels: { total: { enabled: true, style: { fontSize: "13px", fontWeight: 900 } } },
       },
     },
-    xaxis: { type: "category", categories: barChartData.categories },
+    xaxis: { type: "datetime", categories: chartData.categories },
     legend: { position: "right", offsetY: 40 },
     fill: { opacity: 1 },
   };
 
-  const pieOptions = {
-    labels: pieChartData.labels,
-    chart: { type: "pie" },
-    legend: { position: "bottom" },
-    responsive: [{
-      breakpoint: 480,
-      options: { chart: { width: 300 }, legend: { position: "bottom" } },
-    }],
-  };
-
   return (
-    <div>
-      <h3>Total Summary</h3>
-      <Form>
-        <div>
-          <h4>Statistics</h4>
-          <FormLabel>Total Hostels:</FormLabel>
-          <FormControl type="text" value={stats.totalHostels} readOnly />
-          <FormLabel>Total Rooms:</FormLabel>
-          <FormControl type="text" value={stats.totalRooms} readOnly />
-          <FormLabel>Total Capacity:</FormLabel>
-          <FormControl type="text" value={stats.totalCapacity} readOnly />
-          <FormLabel>Total Filled Capacity:</FormLabel>
-          <FormControl type="text" value={stats.totalFilledCapacity} readOnly />
-          <FormLabel>Total Available Capacity:</FormLabel>
-          <FormControl type="text" value={stats.totalAvailableCapacity} readOnly />
-        </div>
-      </Form>
-      <h3>Hostel Capacity Chart</h3>
-      <Chart options={barOptions} series={barChartData.series} type="bar" height={350} />
-      <h3>Hostel Capacity Pie Chart</h3>
-      <Chart options={pieOptions} series={pieChartData.series} type="pie" height={350} />
-    </div>
+    <Container>
+      <h2 className="text-center mt-3">Dashboard Overview</h2>
+      <Row className="mt-4">
+        <Col md={12}>
+          <Card className="shadow p-4">
+            <h5>Sales Data</h5>
+            <Chart options={options} series={chartData.series} type="bar" height={350} />
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
-export default AdminDashBoard;*/
+export default Dashboard;
