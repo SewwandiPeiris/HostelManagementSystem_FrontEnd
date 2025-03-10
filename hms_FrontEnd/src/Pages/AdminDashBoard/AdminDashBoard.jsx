@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Chart from "react-apexcharts";
 import { Container, Row, Col, Card } from "react-bootstrap";
-import Sidebar from "../../Components/SideBar";  // Ensure correct naming and path
-import Tools from "../../Components/Tool";      // Ensure correct naming and path
+import Sidebar from "../../Components/SideBar";  
+import Tools from "../../Components/Tool";     
 
 const Dashboard = () => {
   const [barChartData] = useState({
@@ -35,10 +35,10 @@ const Dashboard = () => {
 
   return (
     <div className="d-flex">
-      <Sidebar /> {/* Ensure Sidebar is correctly named and imported */}
+      <Sidebar /> {}
       <Container className="ml-5" style={{ marginLeft: "260px" }}>
         <h2 className="text-center mt-3">Dashboard Overview</h2>
-        <Tools /> {/* Ensure Tools is correctly named and imported */}
+        <Tools /> {}
         <Row className="mt-4">
           <Col md={6}>
             <Card className="shadow p-4">
@@ -59,3 +59,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+    
