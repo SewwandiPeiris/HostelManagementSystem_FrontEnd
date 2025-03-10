@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Form, FormControl, FormLabel, Button } from 'react-bootstrap';
 import './Select_Student.css';
 
 const SelectStudent = () => {
@@ -7,15 +8,23 @@ const SelectStudent = () => {
 
     // Function to navigate back to the Student page
     const handleBack = () => {
-        navigate('/student'); // Replace '/student' with the correct route of your Student page
+        navigate('/student'); // Replace with the correct route of your Student page
     };
 
     return (
         <div className="select-student-container">
             <h1 className="select-student-title">Select Student</h1>
-            <button className="back-button" onClick={handleBack}>
+            <Button className="back-button" onClick={handleBack}>
                 Back
-            </button>
+            </Button>
+
+            <Form className="select-student-form">
+                <Form.Group>
+                    <FormLabel>Search Student:</FormLabel>
+                    <FormControl type="text" placeholder="Enter student ID or name" />
+                </Form.Group>
+            </Form>
+
             <table className="select-student-table">
                 <thead>
                     <tr>

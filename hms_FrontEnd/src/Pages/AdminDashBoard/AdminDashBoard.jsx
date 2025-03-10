@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+/*import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import axios from "axios";
 import { Form, FormControl, FormLabel } from "react-bootstrap";
+import "./AdminDashboard.css";
 
 const AdminDashBoard = () => {
   const [stats, setStats] = useState({ totalHostels: 0, totalRooms: 0, totalCapacity: 0, totalFilledCapacity: 0, totalAvailableCapacity: 0 });
@@ -96,4 +97,4 @@ const AdminDashBoard = () => {
   );
 };
 
-export default AdminDashBoard;
+export default AdminDashBoard;*/
