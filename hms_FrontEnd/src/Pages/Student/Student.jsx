@@ -20,7 +20,7 @@ const Student = () => {
     getAllProspectiveStudent(tokan)
       .then((res) => {
         console.log(res.data.content);
-        setStudents(res.data.content); // ✅ Store API data
+        setStudents(res.data.content); 
       })
       .catch((error) => {
         console.error("Error fetching student data:", error);
@@ -28,7 +28,7 @@ const Student = () => {
   }, []);
 
   const handleSelectStudent = () => {
-    navigate('/select_student'); // ✅ Navigates to Select Student page
+    navigate('/select_student'); //  Navigates to Select Student page
   };
 
   const handleViewStudent = (studentId) => {

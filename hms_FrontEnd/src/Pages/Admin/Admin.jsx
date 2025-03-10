@@ -5,20 +5,20 @@ import Tool from '../../Components/Tool';
 import './Admin.css';
 
 const Admin = () => {
-  
+
   const admins = [
     { id: 1, faculty: 'Science' },
   ];
 
   return (
     <>
-      {}
+      { }
       <SideBar />
       <Tool />
 
-      {}
+      { }
       <div className="admins-container">
-        <h2>Admin Details</h2>
+        <h2 className="admins-title">Admin Details</h2>
         <table className="admins-table">
           <thead>
             <tr>
