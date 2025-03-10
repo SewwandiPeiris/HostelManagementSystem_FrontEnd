@@ -187,13 +187,40 @@ const Student = () => {
 
     params.studentId = id;
     params.status=stats;
-    updateStudentStatus(token,params).then((res)=>{
-      console.log(res.data.content);
-      if(res.data.status_code==0){
-          lodeStudentTable();
-      }
+    if(stats=="rejected"){
+      Swal.fire({
+        title: `Do you want to reject ${id}?`,
+        showDenyButton: true,
+        confirmButtonText: "Yes",
+        denyButtonText: `No`
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          Swal.fire("Rejected!", "", "success");
+          updateStudentStatus(token,params).then((res)=>{
+            console.log(res.data.content);
+            if(res.data.status_code==0){
+              lodeStudentTable();
 
-    })
+            }
+          })
+        } else if (result.isDenied) {
+          Swal.fire("Changes are not saved", "", "info");
+
+        }
+      });
+    }else {
+
+      updateStudentStatus(token,params).then((res)=>{
+        console.log(res.data.content);
+        if(res.data.status_code==0){
+          lodeStudentTable();
+
+        }
+      })
+
+    }
+
 
   }
 

@@ -52,10 +52,10 @@ const Sidebar = () => {
               <Link to="/admin">Admin</Link></li>
               <li>
               <img src={icon8} className="menu-icon" /> 
-          <Link to="/report">Report</Link></li>
-          <li>
+              <Link to="/report">Report</Link></li>
+              <li>
               <img src={icon9} className="menu-icon" /> 
-              <Link to="/logout">Logout</Link></li>
+              <Link to="/">Logout</Link ></li>
       </ul>
     </div>
   );

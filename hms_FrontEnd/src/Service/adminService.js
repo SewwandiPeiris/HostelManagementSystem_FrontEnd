@@ -92,6 +92,13 @@ export const deleteRoomById=(token,id)=>axios.delete("http://localhost:8081/api/
     },
 });
 
+export const addHostel=(token,hostel)=>axios.post("http://localhost:8081/api/hostel/add-hostel",hostel,{
+    headers: {
+        Authorization: `Bearer ${token}`, // Attach token
+        "Content-Type": "application/json",
+    },
+});
+
 
 
 

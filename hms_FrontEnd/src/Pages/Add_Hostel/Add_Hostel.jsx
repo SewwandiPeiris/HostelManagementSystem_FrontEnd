@@ -4,22 +4,19 @@ import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import Tool from '../../Components/Tool';
 import SideBar from '../../Components/SideBar';
 import './Add_Hostel.css';
+import {addHostel} from "../../Service/adminService.js";
+import Swal from "sweetalert2";
 
 const AddHostel = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    hostelId: '',
-    hostelCategory: '',
-    hostelName: '',
+    hostel_name: '',
     location: '',
-    totalRooms: '',
-    totalCapacity: '',
-    filledCapacity: '',
-    availableCapacity: '',
-    totalBeds: '',
-    totalTables: '',
-    totalChairs: '',
-    remarks: '',
+    contract_fee: '',
+    total_rooms: '',
+    total_capacity: '',
+    filled_capacity: '',
+
   });
   const [formErrors, setFormErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -46,10 +43,41 @@ const AddHostel = () => {
       setFormErrors(errors);
       return;
     }
-    console.log('Hostel Form Data:', formData);
+
     setFormSubmitted(true);
-    alert('Hostel added successfully!');
-    navigate('/hostels');
+    const hostelDto={
+      id:"",
+      hostel_name:formData.hostel_name,
+      location:formData.location,
+      contract_fee:formData.contract_fee,
+      total_rooms:formData.total_rooms,
+      total_capacity:formData.total_capacity,
+      filled_capacity:formData.filled_capacity,
+      available_capacity:""
+    }
+    console.log(hostelDto)
+    const token = sessionStorage.getItem("token");
+    addHostel(token,hostelDto).then((res)=>{
+      if(res.data.status_code=== 0){
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Hostel saved success..",
+          showConfirmButton: false,
+          timer: 3000
+        });
+      }else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Something error..",
+          showConfirmButton: false,
+          timer: 3000
+        });
+      }
+    })
+
+    navigate('/hostel');
   };
 
   return (
@@ -63,16 +91,12 @@ const AddHostel = () => {
         <Form className="add-hostel-form" onSubmit={handleSubmit}>
           <Row>
             {[
-              { label: 'Hostel ID', name: 'hostelId', type: 'text' },
-              { label: 'Hostel Category', name: 'hostelCategory', type: 'text' },
-              { label: 'Hostel Name', name: 'hostelName', type: 'text' },
+              { label: 'Hostel Name', name: 'hostel_name', type: 'text' },
               { label: 'Location', name: 'location', type: 'text' },
-              { label: 'Total Rooms', name: 'totalRooms', type: 'number' },
-              { label: 'Total Capacity', name: 'totalCapacity', type: 'number' },
-              { label: 'Filled Capacity', name: 'filledCapacity', type: 'number' },
-              { label: 'Total Beds', name: 'totalBeds', type: 'number' },
-              { label: 'Total Tables', name: 'totalTables', type: 'number' },
-              { label: 'Total Chairs', name: 'totalChairs', type: 'number' },
+              { label: 'Contract Fee', name: 'contract_fee', type: 'number' },
+              { label: 'Total Capacity', name: 'total_capacity', type: 'number' },
+              { label: 'Filled Capacity', name: 'filled_capacity', type: 'number' },
+              { label: 'Total Room', name: 'total_rooms', type: 'number' },
             ].map(({ label, name, type }) => (
               <Col md={6} key={name} className="col3">
                 <Form.Group controlId={name}>

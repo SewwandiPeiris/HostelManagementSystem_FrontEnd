@@ -104,7 +104,7 @@ const Hostel = () => {
                     <td>{hostal.available_capacity}</td>
                     <td>
                       <button className="action-btn view-btn" onClick={() => handleViewStudent(hostal)}>View</button>
-                      <button className="action-btn delete-btn">Delete</button>
+
                     </td>
                   </tr>
               ))
