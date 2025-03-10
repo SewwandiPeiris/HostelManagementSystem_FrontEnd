@@ -22,10 +22,10 @@ const AddDamageCase = () => {
     e.preventDefault();
     console.log('Damage Case Form Data:', formData);
 
-    // Add your logic here to save the form data, e.g., send it to a server or API
+    
     alert('Damage case added successfully!');
 
-    // Redirect to the damage cases list page
+    
     navigate('/damages');
   };
 
