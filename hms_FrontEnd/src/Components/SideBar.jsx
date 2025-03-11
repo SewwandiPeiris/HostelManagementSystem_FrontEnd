@@ -31,7 +31,7 @@ const Sidebar = () => {
                  
               <li>
                   <img src={icon1} className="menu-icon" />
-                  <Link to="/admindashboard"> DashBorad</Link></li>
+                  <Link className="link1" to="/admindashboard"> DashBorad</Link></li>
               <li>
               <img src={icon2} className="menu-icon" />
               <Link to="/student">Student</Link></li>

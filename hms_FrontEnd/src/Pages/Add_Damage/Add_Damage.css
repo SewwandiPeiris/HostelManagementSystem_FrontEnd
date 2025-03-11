@@ -1,65 +1,62 @@
 .add-damage-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background: #f8f9fa;
-    border: 1px solid #dee2e6;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .add-damage-title {
-    text-align: center;
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #343a40;
-  }
-  
-  .add-damage-form .form-group {
-    margin-bottom: 15px;
-  }
-  
-  .add-damage-form label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .add-damage-form input,
-  .add-damage-form textarea,
-  .add-damage-form select {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  .add-damage-form textarea {
-    resize: none;
-  }
-  
-  .add-damage-form .form-actions {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .submit-button,
-  .cancel-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .submit-button {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .cancel-button {
-    background-color: #e63030;
-    color: white;
-  }
-  
+  max-width: auto;
+  margin-left: 200px;
+  background-color: rgb(247, 247, 249);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.action1,.action2{
+  height: 1.5cm;
+}
+.col3 {
+  margin: 30px 50px;
+}
+
+.add-damage-title {
+  color: #225906;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.form-label {
+  font-weight: 400;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+
+.form-control {
+  max-width: auto;
+  border-radius: 5px;
+  border: 0.5px solid #b4b9be;
+  font-size: 0.9rem;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-right: 1cm;
+  margin-bottom: 0.3cm; /* Reduce space between inputs */
+  padding: 8px; 
+}
+.form-group {
+  margin-bottom: 10px; /* Reduce spacing between form fields */
+}
+
+.form-control:focus {
+  border-color: #006400;
+  box-shadow: 0 0 5px rgba(158, 175, 153, 0.5);
+}
+
+.add-button,
+.cancel-button {
+  color: white;
+  border: none;
+  margin: 20px 40px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  width: 20%;
+  height: 1cm;
+}
