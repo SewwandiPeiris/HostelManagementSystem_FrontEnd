@@ -1,0 +1,83 @@
+/* Dashboard.css */
+
+/* Container Styling */
+.dashboard-container {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    margin-left: 200px;
+    padding: 20px;
+    background-color: white;
+  }
+
+.dashboard-title{
+    font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 0px;
+}
+  .header5{
+    text-align: left;
+  }
+  /* Card Styling */
+  .dashboard-card {
+    padding: 0;
+    width: 500px;
+    margin: 0px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    background: #ffffff;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .dashboard-card:hover {
+    transform: scale(1.02);
+  }
+  .c5{
+    margin: 10px 0px;
+  }
+.r5{
+    padding: 0;
+}
+  /* Specific Card Heights */
+  .bar-chart-card {
+    padding: 20px 20px;
+  }
+
+  .pie-chart-card1,
+  .pie-chart-card {
+    padding: 20px 20px;
+  }
+  .dashboard-card.bar-chart-card{
+    width: 460px;
+    height: 425px;
+  }
+  .dashboard-card.pie-chart-card{
+    width: 370px;
+    height: 425px;
+  }
+  .dashboard-card.pie-chart-card1{
+    width: 355px;
+    height: 425px;
+  }
+  
+  .dashboard-card.detail-chart-card{
+    width:100%;
+    height: 2.5cm;
+  }
+  .detail-chart-card{
+    padding: 5px 20px;
+    margin-top: 5px;
+  }
+  
+  /* Chart Styling */
+  .apexcharts-text tspan {
+    font-size: 14px !important;
+    font-weight: bold !important;
+    fill: #333 !important;
+  }
+  
+  /* ApexCharts Custom Colors */
+  .apexcharts-series path {
+    stroke-width: 3 !important;
+  }
+  
+  
