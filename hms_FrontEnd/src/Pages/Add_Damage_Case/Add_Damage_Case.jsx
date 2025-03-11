@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import Tool from '../../Components/Tool';
 import SideBar from '../../Components/SideBar';
 import Swal from 'sweetalert2';
 import './Add_Damage_Case.css';
+import {addDamageCase, getAllDamageMaster, getAllHostel} from "../../Service/adminService.js";
 
 const AddDamageCase = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    damageCaseId: '',
-    damageId: '',
-    studentId: '',
-    penaltyPayment: '',
-    paymentStatus: '',
+    hostelId: '',
+    penalty_price: '',
+    damageMasterId: '',
+    studentId:''
   });
 
+  const [hostels, setHostels] = useState([]);
+  const [damageMaster, setDamageMaster] = useState([]);
+  const [selectedHostelId, setSelectedHostelId] = useState("");
+  const [selectedDamageId, setSelectedDamagelId] = useState("");
   const [formErrors, setFormErrors] = useState({});
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -26,39 +30,80 @@ const AddDamageCase = () => {
   };
 
   // Validate form fields
-  const validateForm = () => {
-    let errors = {};
-    Object.keys(formData).forEach((key) => {
-      if (!formData[key]) {
-        errors[key] = 'This field is required';
-      }
-    });
-    return errors;
-  };
+  // const validateForm = () => {
+  //   let errors = {};
+  //   Object.keys(formData).forEach((key) => {
+  //     if (!formData[key]) {
+  //       errors[key] = 'This field is required';
+  //     }
+  //   });
+  //   return errors;
+  // };
+
+  useEffect(() => {
+    const token = sessionStorage.getItem("token");
+    getAllHostel(token)
+        .then((res)=>{
+          setHostels(res.data.content)
+
+        })
+
+    getAllDamageMaster(token).then((res)=>{
+      setDamageMaster(res.data.content);
+    })
+  }, []);
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    const errors = validateForm();
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
+    // e.preventDefault();
+    // const errors = validateForm();
+    // if (Object.keys(errors).length > 0) {
+    //   setFormErrors(errors);
+    //   return;
+    // }
 
     setFormSubmitted(true);
     console.log('Damage Case Data:', formData);
 
+    const damageCaseDto={
+
+      id: "",
+      hostelId:selectedHostelId,
+      penalty_price:formData.penalty_price,
+      payment_status: "pending",
+      damageMasterId:selectedDamageId,
+      studentId:formData.studentId
+    }
+
+    console.log(damageCaseDto)
+    const token = sessionStorage.getItem("token");
+    addDamageCase(token,damageCaseDto).then((res)=>{
+      if(res.data.status_code=== 0){
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Damage Case add success..",
+          showConfirmButton: false,
+          timer: 2500
+        });
+        navigate('/damage');
+      }else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Something error..",
+          showConfirmButton: false,
+          timer: 3000
+        });
+      }
+    })
+
     // Show success message
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Damage case added successfully!',
-      showConfirmButton: false,
-      timer: 3000
-    });
+
 
     // Redirect to damages list
-    navigate('/damage');
+
   };
 
   return (
@@ -72,10 +117,9 @@ const AddDamageCase = () => {
         <Form className="add-damage-case-form" onSubmit={handleSubmit}>
           <Row>
             {[
-              { label: 'Damage Case ID', name: 'damageCaseId', type: 'text' },
-              { label: 'Damage ID', name: 'damageId', type: 'text' },
+
               { label: 'Student ID', name: 'studentId', type: 'text' },
-              { label: 'Penalty Payment', name: 'penaltyPayment', type: 'number' },
+              { label: 'Penalty Payment', name: 'penalty_price', type: 'number' },
             ].map(({ label, name, type }) => (
               <Col md={6} key={name} className="col3">
                 <Form.Group controlId={name}>
@@ -93,19 +137,41 @@ const AddDamageCase = () => {
             ))}
             <Col md={6} className="col3">
               <Form.Group controlId="paymentStatus">
-                <Form.Label>Payment Status</Form.Label>
-                <Form.Control 
-                  as="select" 
-                  name="paymentStatus" 
-                  value={formData.paymentStatus} 
-                  onChange={handleChange} 
-                  isInvalid={!!formErrors.paymentStatus}
+                <Form.Select
+                    className="custom-input7"
+                    size="sm"
+                    value={selectedHostelId}
+                    onChange={(e) => setSelectedHostelId(e.target.value)}
                 >
-                  <option value="">Select Status</option>
-                  <option value="Paid">Paid</option>
-                  <option value="Unpaid">Unpaid</option>
-                  <option value="Pending">Pending</option>
-                </Form.Control>
+
+                  <option value="" disabled={true} > Select a Hostel </option>
+                  {hostels.length > 0 &&
+                      hostels.map((hostel) => (
+                          <option key={hostel.id} value={hostel.id}>
+                            {hostel.hostel_name}
+                          </option>
+                      ))}
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">{formErrors.paymentStatus}</Form.Control.Feedback>
+              </Form.Group>
+            </Col>
+            <Col md={6} className="col3">
+              <Form.Group controlId="paymentStatus">
+                <Form.Select
+                    className="custom-input7"
+                    size="sm"
+                    value={selectedDamageId}
+                    onChange={(e) => setSelectedDamagelId(e.target.value)}
+                >
+
+                  <option value="" disabled={true} > Select a Damage Master </option>
+                  {damageMaster.length > 0 &&
+                      damageMaster.map((damage) => (
+                          <option key={damage.id} value={damage.id}>
+                            {damage.id+ " - "+ damage.description}
+                          </option>
+                      ))}
+                </Form.Select>
                 <Form.Control.Feedback type="invalid">{formErrors.paymentStatus}</Form.Control.Feedback>
               </Form.Group>
             </Col>

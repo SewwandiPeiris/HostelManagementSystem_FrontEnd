@@ -99,6 +99,35 @@ export const addHostel=(token,hostel)=>axios.post("http://localhost:8081/api/hos
     },
 });
 
+export const getAllDamageMaster=(token)=>axios.get("http://localhost:8081/api/damage/get-all-damage-master",{
+    headers: {
+        Authorization: `Bearer ${token}`, // Attach token
+        "Content-Type": "application/json",
+    },
+});
+
+export const getAllDamageCase=(token)=>axios.get("http://localhost:8081/api/damage/get-all-damage-case",{
+    headers: {
+        Authorization: `Bearer ${token}`, // Attach token
+        "Content-Type": "application/json",
+    },
+});
+
+export const addDamageMaster=(token,masterDto)=>axios.post("http://localhost:8081/api/damage/add-damage-master",masterDto,{
+    headers: {
+        Authorization: `Bearer ${token}`, // Attach token
+        "Content-Type": "application/json",
+    },
+});
+
+
+export const addDamageCase=(token,damageCase)=>axios.post("http://localhost:8081/api/damage/add-damage-case",damageCase,{
+    headers: {
+        Authorization: `Bearer ${token}`, // Attach token
+        "Content-Type": "application/json",
+    },
+});
+
 
 
 

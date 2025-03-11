@@ -5,16 +5,15 @@ import Tool from '../../Components/Tool';
 import SideBar from '../../Components/SideBar';
 import Swal from 'sweetalert2';
 import './Add_Damage.css';
+import {addDamageMaster} from "../../Service/adminService.js";
 
 const AddDamage = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    damageId: '',
-    damageDate: '',
-    damageDescription: '',
-    damagePayment: '',
-    hostelId: '',
-    action: '',
+    id: '',
+    description: '',
+    damage_date: '',
+    damage_price: '',
   });
 
   const [formErrors, setFormErrors] = useState({});
@@ -40,26 +39,48 @@ const AddDamage = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    const errors = validateForm();
-    if (Object.keys(errors).length > 0) {
-      setFormErrors(errors);
-      return;
-    }
 
-    setFormSubmitted(true);
+    // const errors = validateForm();
+    // if (Object.keys(errors).length > 0) {
+    //   setFormErrors(errors);
+    //   return;
+    // }
+
+    // setFormSubmitted(true);
     console.log('Damage Form Data:', formData);
 
-    // Show success message
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Damage record added successfully!',
-      showConfirmButton: false,
-      timer: 3000
-    });
+    const masterDto={
+      id:"",
+      description:formData.description,
+      damage_date:formData.damage_date,
+      damage_price:formData.damage_price
+    }
+    const token = sessionStorage.getItem("token");
+    addDamageMaster(token,masterDto).then((res)=>{
+      if(res.data.status_code=== 0){
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Damage Master add success..",
+          showConfirmButton: false,
+          timer: 2500
+        });
+        navigate('/damage');
+      }else {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Something error..",
+          showConfirmButton: false,
+          timer: 3000
+        });
+      }
+    })
+
+
 
     // Redirect to damages list
-    navigate('/damage');
+
   };
 
   return (
@@ -72,11 +93,26 @@ const AddDamage = () => {
         
         <Form className="add-damage-form" onSubmit={handleSubmit}>
           <Row className="r7">
+            <Col md={8} className="col4">
+              <Form.Group controlId="description">
+                <Form.Label>Damage Description</Form.Label>
+                <Form.Control className='action2'
+                              as="textarea"
+                              name="description"
+                              value={formData.description}
+                              onChange={handleChange}
+                              rows="4"
+                              isInvalid={!!formErrors.description}
+                />
+                <Form.Control.Feedback type="invalid">{formErrors.description}</Form.Control.Feedback>
+              </Form.Group>
+            </Col>
+          </Row>
+          <Row className="r7">
             {[
-              { label: 'Damage ID', name: 'damageId', type: 'text' },
-              { label: 'Damage Date', name: 'damageDate', type: 'date' },
-              { label: 'Damage Payment (Amount)', name: 'damagePayment', type: 'number' },
-              { label: 'Hostel ID', name: 'hostelId', type: 'text' },
+              { label: 'Damage Date', name: 'damage_date', type: 'date' },
+              { label: 'Damage Payment (Amount)', name: 'damage_price', type: 'number' },
+
             ].map(({ label, name, type }) => (
               <Col md={6} key={name} className="col4">
                 <Form.Group controlId={name}>
@@ -93,38 +129,8 @@ const AddDamage = () => {
               </Col>
             ))}
             </Row>
-<Row className="r7">
-            <Col md={8} className="col4">
-              <Form.Group controlId="damageDescription">
-                <Form.Label>Damage Description</Form.Label>
-                <Form.Control className='action2' 
-                  as="textarea" 
-                  name="damageDescription" 
-                  value={formData.damageDescription} 
-                  onChange={handleChange} 
-                  rows="4"
-                  isInvalid={!!formErrors.damageDescription}
-                />
-                <Form.Control.Feedback type="invalid">{formErrors.damageDescription}</Form.Control.Feedback>
-              </Form.Group>
-            </Col>
-            </Row>
-            <Row className="r7">
-            <Col md={8} className="col4">
-              <Form.Group controlId="action">
-                <Form.Label>Action Taken</Form.Label>
-                <Form.Control className='action1' 
-                  as="textarea" 
-                  name="action" 
-                  value={formData.action} 
-                  onChange={handleChange} 
-                  rows="3"
-                  isInvalid={!!formErrors.action}
-                />
-                <Form.Control.Feedback type="invalid">{formErrors.action}</Form.Control.Feedback>
-              </Form.Group>
-            </Col>
-          </Row>
+
+
 
           <Row>
             <Col className="form-actions">
