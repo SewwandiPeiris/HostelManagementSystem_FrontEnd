@@ -21,6 +21,7 @@ const AdminDashBoard = () => {
     const token = sessionStorage.getItem("token");
     getAllEligibleStudent(token).then((res) => {
       setStudentList(res.data.content);
+      console.log(res.data.content)
     });
   }, []);
 
@@ -38,8 +39,8 @@ const AdminDashBoard = () => {
   const totalCapacity = hostels.reduce((sum, hostel) => sum + hostel.total_capacity, 0);
 
   // Count male and female students
-  const maleCount = students.filter((student) => student.gender === "Male").length;
-  const femaleCount = students.filter((student) => student.gender === "Female").length;
+  const maleCount = students.filter((student) => student.gender === "male").length;
+  const femaleCount = students.filter((student) => student.gender === "female").length;
 
   // Bar Chart Data
   const barChartData = {

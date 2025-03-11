@@ -38,6 +38,7 @@ const Login1 = () => {
 
           sessionStorage.setItem("studentDetails",JSON.stringify(studentDetails))
           console.log("Decrypted JWT:", decryptedJWT);
+
           if(studentDetails.role==="Admin"){
             console.log("admin")
             navigate("/admindashboard")

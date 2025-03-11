@@ -5,100 +5,135 @@ import girlAvatar from "../../assets/girl.jpg";
 import "./UserAccount.css";
 import { getprospectiveStudentById, getEligibleStudentByEmail } from "../../Service/studentService";
 
-const UserAccount = ({ userData }) => {
+const UserAccount = () => {
+
+
   const [status, setStatus] = useState(""); // Selected, Pending, or Not Selected
   const [genderAvatar, setGenderAvatar] = useState("");
   const [prospectStudentData, setProspectStudentData] = useState(null);
   const [eligibleStudentData, setEligibleStudentData] = useState(null);
+  const [userDta, setUserData] = useState(null);
 
-  useEffect(() => {
-    if (!userData) return;
 
-    if (userData.gender === "Male") {
-      setGenderAvatar(boyAvatar);
-    } else if (userData.gender === "Female") {
-      setGenderAvatar(girlAvatar);
-    }
 
-    const dto = sessionStorage.getItem("studentDetails");
-    if (!dto) return;
 
-    const detailsDto = JSON.parse(dto);
-    const token = sessionStorage.getItem("token");
+  useEffect(()=>{
+    console.log("ACERWHTRN")
+      const dto = sessionStorage.getItem("studentDetails");
+      const token = sessionStorage.getItem("token");
+      if (!dto){
+        return;
+      }
+     const detailsDto = JSON.parse(dto);
+    console.log(detailsDto.id)
+    setStatus(detailsDto.status);
+
 
     if (detailsDto.status === "pending" || detailsDto.status === "rejected") {
       getprospectiveStudentById(detailsDto.id, token)
-        .then(response => {
-          setProspectStudentData(response.data.content);
-          console.log(response.data.content);
-        })
-        .catch(error => console.error("Error fetching user data:", error));
+          .then((response) => {
+            const user=response.data.content;
+            setProspectStudentData(user);
+            setUserData(user)
+            console.log(user)
+            profile(user);
+          })
+          .catch(error => console.error("Error fetching user data:", error));
     } else if (detailsDto.status === "selected") {
-      getEligibleStudentByEmail(detailsDto.email, token)
-        .then(response => {
-          setEligibleStudentData(response.data.content);
-          console.log(response.data.content);
-        })
-        .catch(error => console.error("Error fetching eligible student data:", error));
-    }
+        getEligibleStudentByEmail(detailsDto.email, token)
+          .then((response) => {
+            const user=response.data.content;
+            setEligibleStudentData(user);
+            setUserData(user)
+            console.log(response.data.content)
+            profile(user);
+            // manageProfilePic(user);
 
-    setStatus(detailsDto.status);
-  }, [userData]);
+            // console.log(user);
+          })
+          .catch(error => console.error("Error fetching eligible student data:", error));
+      }
+
+
+
+
+
+
+
+  },[]);
+
+  const profile = (user) => {
+    if (!user) return;
+
+    if (user.gender === "male") {
+      setGenderAvatar(boyAvatar);
+    } else if (user.gender === "female") {
+      setGenderAvatar(girlAvatar);
+    }
+  };
+
+
 
   const handleSendEmail = () => {
     window.location.href = "mailto:abc@gmail.com";
   };
 
+
+const a=prospectStudentData || eligibleStudentData || userDta
+
+if(!a){
+  return
+}
+
+
+
   return (
-    <Container className="user-account-container">
-      <h2 className="text-center">User Details</h2>
-      <Row className="justify-content-center">
-        <Col xs={12} md={3} className="text-center">
-          <img src={genderAvatar} alt="User Avatar" className="user-avatar" />
-        </Col>
-        <Col xs={12} md={6}>
-          <h5>{userData.firstName +" "+ userData.lastName}</h5>
-          {status === "Selected" && <p>{userData.studentId}</p>}
-          <p className={`status ${status === "Pending" ? "pending" : ""}`}>{status}</p>
-          <Button variant="warning" onClick={handleSendEmail}>
-            Requests & Claims
-          </Button>
-        </Col>
-      </Row>
+      <Container className="user-account-container">
 
-      {status === "pending" || status === "rejected" && (
-        <Row className="mt-4">
-          <Col xs={12} md={6} className="details-box">
-            <h6>Name With Initials: {userData.nameWithInitials}</h6>
-            <h6>Faculty Name: {userData.facultyName}</h6>
-            <h6>Contact: {userData.contactNumber}</h6>
-            <h6>Email: {userData.email}</h6>
-            <h6>Home Address: {userData.street +" "+ userData.village}</h6>
+        <h2 className="text-center">User Details</h2>
+        <Row className="justify-content-center">
+          <Col xs={12} md={3} className="text-center">
+            <img src={genderAvatar} alt="User Avatar" className="user-avatar" />
+          </Col>
+          <Col xs={12} md={6}>
+            <h5>{userDta.firstName + " " + userDta.lastName}</h5>
+            {status === "selected" && <p>{userDta.studentId}</p>}
+            <p className={`status ${status === "pending" ? "pending" : ""}`}>{status}</p>
+            <Button variant="warning" onClick={handleSendEmail}>
+              Requests & Claims
+            </Button>
           </Col>
         </Row>
-      )}
 
-      {status === "Selected" && (
-        <Row className="mt-4">
-          <Col xs={12} md={6} className="details-box">
-            <h6>Name With Initials: {userData.nameWithInitials}</h6>
-            <h6>Faculty Name: {userData.facultyName}</h6>
-            <h6>Contact: {userData.contactNumber}</h6>
-            <h6>Email: {userData.email}</h6>
-            <h6>Home Address: {userData.street +" "+ userData.village}</h6>
-          </Col>
-          <Col xs={12} md={6} className="details-box">
-            <h6>Assigned Hostel: {userData.hostel_id}</h6>
-            <h6>Assigned Room: {userData.room_id}</h6>
-            <h6>Enroll Date: {userData.enrollDate}</h6>
-          </Col>
-        </Row>
-      )}
+        {(status === "pending" || status === "rejected") && (
+            <Row className="mt-4">
+              <Col xs={12} md={6} className="details-box">
+                <h6>Name With Initials: {userDta.nameWithInitials}</h6>
+                <h6>Faculty Name: {userDta.facultyName}</h6>
+                <h6>Contact: {userDta.contactNumber}</h6>
+                <h6>Email: {userDta.email}</h6>
+                <h6>Home Address: {userDta.street + " " + userDta.village}</h6>
+              </Col>
+            </Row>
+        )}
 
-      <Container>
-        <h1>User Account</h1>
+        {status === "selected" && (
+            <Row className="mt-4">
+              <Col xs={12} md={6} className="details-box">
+                <h6>Name With Initials: {userDta.nameWithInitials}</h6>
+                <h6>Faculty Name: {userDta.facultyName}</h6>
+                <h6>Contact: {userDta.contactNumber}</h6>
+                <h6>Email: {userDta.email}</h6>
+                <h6>Home Address: {userDta.street + " " + userDta.village}</h6>
+              </Col>
+              <Col xs={12} md={6} className="details-box">
+                <h6>Assigned Hostel: {userDta.hostel_detail?.hostel_name}</h6>
+                <h6>Assigned Room: {userDta.roomId}</h6>
+                <h6>Enroll Date: {userDta.enrollDate}</h6>
+              </Col>
+            </Row>
+        )}
       </Container>
-    </Container>
   );
 };
 

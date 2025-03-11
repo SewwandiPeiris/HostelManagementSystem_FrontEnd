@@ -168,7 +168,7 @@ const ApplyForm = () => {
               });
             }
           })
-
+      sessionStorage.clear();
       setFormSubmitted(true);
     } else {
       console.log("scsagr")
