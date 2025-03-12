@@ -47,12 +47,12 @@ const Sidebar = () => {
               <li>
               <img src={icon6} className="menu-icon" />
               <Link to="/hostel">Hostel</Link></li>
-              <li>
-              <img src={icon7} className="menu-icon" /> 
-              <Link to="/admin">Admin</Link></li>
-              <li>
-              <img src={icon8} className="menu-icon" /> 
-              <Link to="/report">Report</Link></li>
+              {/*<li>*/}
+              {/*<img src={icon7} className="menu-icon" /> */}
+              {/*<Link to="/admin">Admin</Link></li>*/}
+              {/*<li>*/}
+              {/*<img src={icon8} className="menu-icon" /> */}
+              {/*<Link to="/report">Report</Link></li>*/}
               <li>
               <img src={icon9} className="menu-icon" /> 
               <Link to="/">Logout</Link ></li>

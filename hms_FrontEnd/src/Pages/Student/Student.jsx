@@ -92,7 +92,18 @@ const Student = () => {
     getAllProspectiveStudentByFilter(token,params)
         .then((res) => {
 
-          setStudents(res.data.content);
+          if(res.data.status_code===0){
+            setStudents(res.data.content);
+          }else {
+            Swal.fire({
+              title: "Not Found",
+              text: "Data Not Found...",
+              icon: "error"
+            });
+
+
+          }
+
         })
         .catch((error) => {
           console.error("Error fetching filtered student data:", error);

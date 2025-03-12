@@ -8,9 +8,9 @@ import Modal from "react-bootstrap/Modal";
 import '../Student/Student.css';
 import {
     deleteEligibleStudent,
-    getAllEligibleStudent,
+    getAllEligibleStudent, getAllEligibleStudentByFilter,
     getAllHostel,
-    getAllProspectiveStudent,
+    getAllProspectiveStudent, getAllProspectiveStudentByFilter,
     getRoomByHostelId, updateStudentStatus
 } from "../../Service/adminService.js";
 import Swal from "sweetalert2";
@@ -113,6 +113,33 @@ const SelectStudent = () => {
         });
     }
 
+    const findStudent = () => {
+        const token = sessionStorage.getItem("token");
+        const params = {};
+
+        if (selectedHostelId) params.hostelId = selectedHostelId;
+        if (selectedRoomId) params.roomId = selectedRoomId;
+
+
+        getAllEligibleStudentByFilter(token,params)
+            .then((res) => {
+                if(res.data.status_code===0){
+                    setStudents(res.data.content);
+                }else {
+                    Swal.fire({
+                        title: "Not Found",
+                        text: "Data Not Found...",
+                        icon: "error"
+                    });
+                }
+
+
+            })
+            .catch((error) => {
+                console.error("Error fetching filtered student data:", error);
+            });
+    };
+
     const updateStudent=(id,stats)=>{
         const token = sessionStorage.getItem("token");
         const params = {};
@@ -164,11 +191,16 @@ const SelectStudent = () => {
                         <option value="" disabled={true} > Select a Room </option>
                         {rooms.length > 0 &&
                             rooms.map((room) => (
-                                <option key={room.id} value={room.id}>
+                                <option key={room.roomId} value={room.roomId}>
                                     {room.roomId}
                                 </option>
                             ))}
                     </Form.Select>
+
+                    <button className="add-select-student" onClick={findStudent}>
+                        Find
+                    </button>
+
 
                     <button className="add-select-student" onClick={handleBack}>
                         Go to Prospective students Details

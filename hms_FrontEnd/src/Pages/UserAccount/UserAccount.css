@@ -7,23 +7,28 @@
   padding: 20px;
   background-color: white;
 }
+.bn21{
+  height: 1cm;
+  width: 2.5cm;
+  background-color: red;
 
+}
 .studentName{
   color: rgb(3, 76, 3);
   font-size: 60px;
-  font-style: bold;
+  font-weight: bold;
 }
 .pageName{
   color: rgb(3, 13, 76);
   font-size: 30px;
-  font-style: bold;
+  font-weight: bold;
   padding: 10px 10px;
   text-align: center;
   margin-bottom: 5px;
 
 }
 .h5{
-  font-style: bold;
+  font-weight: bold;
 }
 .status {
   font-weight: bold;

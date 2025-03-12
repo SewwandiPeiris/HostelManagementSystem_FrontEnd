@@ -158,6 +158,7 @@ const ApplyForm = () => {
                 text: "Form submitted successfuly..",
                 icon: "success"
               });
+              sessionStorage.clear();
               navigate("/");
               return;
             }else if(res.data.status_code === 1){
@@ -168,7 +169,7 @@ const ApplyForm = () => {
               });
             }
           })
-      sessionStorage.clear();
+
       setFormSubmitted(true);
     } else {
       console.log("scsagr")

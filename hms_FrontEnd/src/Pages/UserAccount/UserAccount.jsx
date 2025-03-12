@@ -6,8 +6,11 @@ import boyAvatar from "../../assets/boy.jpeg";
 import girlAvatar from "../../assets/girl.jpg";
 import "./UserAccount.css";
 import { getprospectiveStudentById, getEligibleStudentByEmail } from "../../Service/studentService";
+import {useNavigate} from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UserAccount = () => {
+  const navigate = useNavigate();
   const [status, setStatus] = useState(""); // Selected, Pending, or Not Selected
   const [genderAvatar, setGenderAvatar] = useState("");
   const [prospectStudentData, setProspectStudentData] = useState(null);
@@ -52,12 +55,51 @@ const UserAccount = () => {
 
   }, []);
 
+  const logout=()=>{
+    console.log("ssdfsdffsdg")
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "Are you sure?",
+      text: "You won't logout!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Logout!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        swalWithBootstrapButtons.fire({
+          title: "Logout!",
+          text: "",
+          icon: "success"
+        });
+        navigate('/');
+      } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire({
+          title: "Cancelled",
+          text: "",
+          icon: "error"
+        });
+      }
+    });
+
+  }
+
   const profile = (user) => {
     if (!user) return;
 
-    if (user.gender === "Male") {
+    if (user.gender === "male") {
       setGenderAvatar(boyAvatar);
-    } else if (user.gender === "Female") {
+    } else if (user.gender === "female") {
       setGenderAvatar(girlAvatar);
     }
   };
@@ -76,7 +118,7 @@ const UserAccount = () => {
     <>
     <Header/>
     <Container className="user-account-container">
-
+      <button className="bn21" onClick={logout}>Logout</button>
       <h2 className="pageName">User Details</h2>
       <Row className="justify-content-center">
         <Col xs={12} md={3} className="c11">
